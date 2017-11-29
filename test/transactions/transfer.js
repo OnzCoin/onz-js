@@ -1,10 +1,10 @@
 if (typeof module !== 'undefined' && module.exports) {
 	var slots = require('../../lib/time/slots');
 	var common = require('../common');
-	var lisk = common.lisk;
+	var onz = common.onz;
 }
 describe('transfer.js', function () {
-	var transfer = lisk.transfer;
+	var transfer = onz.transfer;
 
 	it('should be ok', function () {
 		(transfer).should.be.ok;

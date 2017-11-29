@@ -1,12 +1,12 @@
 if (typeof module !== 'undefined' && module.exports) {
 	var slots = require('../../lib/time/slots');
 	var common = require('../common');
-	var lisk = common.lisk;
+	var onz = common.onz;
 }
 
 describe('vote.js', function () {
 
-	var vote = lisk.vote;
+	var vote = onz.vote;
 
 	it('should be ok', function () {
 		(vote).should.be.ok;
@@ -24,7 +24,7 @@ describe('vote.js', function () {
 
 		var createVote = vote.createVote,
 		    vt = null,
-		    publicKey = lisk.crypto.getKeys('secret').publicKey,
+		    publicKey = onz.crypto.getKeys('secret').publicKey,
 		    publicKeys = ['+' + publicKey];
 
 		it('should be ok', function () {
@@ -85,7 +85,7 @@ describe('vote.js', function () {
 			});
 
 			it('should have recipientId string equal to sender', function () {
-				(vt).should.have.property('recipientId').and.be.type('string').and.equal(lisk.crypto.getAddress(publicKey));
+				(vt).should.have.property('recipientId').and.be.type('string').and.equal(onz.crypto.getAddress(publicKey));
 			});
 
 			it('should have amount number eaul to 0', function () {
@@ -137,24 +137,24 @@ describe('vote.js', function () {
 			});
 
 			it('should be signed correctly', function () {
-				var result = lisk.crypto.verify(vt);
+				var result = onz.crypto.verify(vt);
 				(result).should.be.ok;
 			});
 
 			it('should be second signed correctly', function () {
-				var result = lisk.crypto.verifySecondSignature(vt, lisk.crypto.getKeys('second secret').publicKey);
+				var result = onz.crypto.verifySecondSignature(vt, onz.crypto.getKeys('second secret').publicKey);
 				(result).should.be.ok;
 			});
 
 			it('should not be signed correctly now', function () {
 				vt.amount = 100;
-				var result = lisk.crypto.verify(vt);
+				var result = onz.crypto.verify(vt);
 				(result).should.be.not.ok;
 			});
 
 			it('should not be second signed correctly now', function () {
 				vt.amount = 100;
-				var result = lisk.crypto.verifySecondSignature(vt, lisk.crypto.getKeys('second secret').publicKey);
+				var result = onz.crypto.verifySecondSignature(vt, onz.crypto.getKeys('second secret').publicKey);
 				(result).should.be.not.ok;
 			});
 

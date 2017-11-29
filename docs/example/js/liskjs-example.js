@@ -8,8 +8,8 @@ var options = {
 	port: ''
 };
 
-// Initiate new Lisk Constructor
-var LSK = lisk.api({ testnet: true, port: 7000 });
+// Initiate new Onz Constructor
+var ONZ = onz.api({ testnet: true, port: 10998 });
 
 $(function () {
 	$('#send_show_secret,#info_show_secret').on('change', function () {
@@ -27,17 +27,17 @@ $(function () {
 		init(passphrase);
 	});
 
-	$('#sendLsk').on('click', function (e) {
+	$('#sendOnz').on('click', function (e) {
 		e.preventDefault();
 		var passphrase = $('#send_secret_input').val();
-		var amount = $('#send_lsk_input').val();
-		var recipient = $('#send_lsk_recipient').val();
+		var amount = $('#send_onz_input').val();
+		var recipient = $('#send_onz_recipient').val();
 
 		amount = Math.floor(amount * 100000000);
 
-		LSK.sendRequest('transactions', { secret: passphrase, amount: amount, recipientId: recipient } , function (data) {
-			LSK.lastQuery = data;
-			// console.log(LSK.lastQuery);
+		ONZ.sendRequest('transactions', { secret: passphrase, amount: amount, recipientId: recipient } , function (data) {
+			ONZ.lastQuery = data;
+			// console.log(ONZ.lastQuery);
 			console.log(data);
 
 			var str = JSON.stringify(data);
@@ -51,7 +51,7 @@ $(function () {
 		var pass = $('#signPassphrase').val();
 		var message = $('#signMessage').val();
 
-		var signature = lisk.crypto.signAndPrintMessage(message, pass);
+		var signature = onz.crypto.signAndPrintMessage(message, pass);
 
 		$('#signResult').val(signature);
 	});
@@ -63,7 +63,7 @@ $(function () {
 		var signature = $('#verifySignature').val();
 
 		try {
-			var message = lisk.crypto.verifyMessageWithPublicKey(signature, pubKey);
+			var message = onz.crypto.verifyMessageWithPublicKey(signature, pubKey);
 		} catch (e) {
 			$('#validSignature').html('Failed to decrypt message.');
 
@@ -89,7 +89,7 @@ $(function () {
 		var recipientPublicKey = $("#encryptMessageRecipientPublicKey").val();
 		var message = $("#encryptMessage").val();
 
-		var encryptedObject = lisk.crypto.encryptMessageWithSecret(message, secret, recipientPublicKey);
+		var encryptedObject = onz.crypto.encryptMessageWithSecret(message, secret, recipientPublicKey);
 		var nonce = encryptedObject.nonce;
 		var encryptedMessage = encryptedObject.encryptedMessage;
 
@@ -106,7 +106,7 @@ $(function () {
 		var nonce = $("#nonceToDecrypt").val();
 
 		try {
-			var message = lisk.crypto.decryptMessageWithSecret(encryptedMessage, nonce, secret, senderPublicKey);
+			var message = onz.crypto.decryptMessageWithSecret(encryptedMessage, nonce, secret, senderPublicKey);
 		} catch (e) {
 			$("#decryptedMessageValidity").html(convertNaclError(e)).css('color', 'red');
 		}
@@ -141,7 +141,7 @@ function convertNaclError (e) {
 function init (passphrase) {
 	(function () {
 		getAccount(function (accountData) {
-			var accAddress = LSK.getAddressFromSecret(passphrase).address;
+			var accAddress = ONZ.getAddressFromSecret(passphrase).address;
 
 			if (accountData.address) {
 				document.getElementById('balance_details').innerHTML = JSON.stringify(accountData, null, 2);
@@ -149,11 +149,11 @@ function init (passphrase) {
 				document.getElementById('balance_details').innerHTML = JSON.stringify(accountData.account, null, 2);
 			}
 
-			LSK.sendRequest('transactions', { senderId: accAddress, recipientId: accAddress }, function (data_tx) {
+			ONZ.sendRequest('transactions', { senderId: accAddress, recipientId: accAddress }, function (data_tx) {
 				// var str = JSON.stringify(data);
 				document.getElementById('transaction_details').innerHTML = JSON.stringify(data_tx, null, 2);
 
-				LSK.sendRequest('accounts/delegates', { address: accAddress }, function (data_del) {
+				ONZ.sendRequest('accounts/delegates', { address: accAddress }, function (data_del) {
 					// var str = JSON.stringify(data);
 					console.log(data_del);
 					document.getElementById('delegate_details').innerHTML = JSON.stringify(data_del, null, 2);
@@ -163,10 +163,10 @@ function init (passphrase) {
 	})();
 
 	function getAccount (callback) {
-		LSK.sendRequest('accounts/open', { secret: passphrase }, function (data) {
-			var accAddress = LSK.getAddressFromSecret(passphrase);
+		ONZ.sendRequest('accounts/open', { secret: passphrase }, function (data) {
+			var accAddress = ONZ.getAddressFromSecret(passphrase);
 			if (data === undefined) {
-				LSK.sendRequest('accounts', { address : accAddress.address }, function (data_acc) {
+				ONZ.sendRequest('accounts', { address : accAddress.address }, function (data_acc) {
 					var returnObj = {
 						open: data,
 						account: data_acc

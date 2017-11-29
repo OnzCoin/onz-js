@@ -13,9 +13,9 @@ global.sinon = require('sinon');
 
 process.env.NODE_ENV = 'test';
 
-var lisk = require('../index.js');
+var onz = require('../index.js');
 
-exports.lisk = lisk;
+exports.onz = onz;
 exports.cryptoLib = cryptoLib;
 exports.should = should;
 exports.sinon = sinon;

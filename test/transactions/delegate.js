@@ -2,12 +2,12 @@
 if (typeof module !== 'undefined' && module.exports) {
 	var slots = require('../../lib/time/slots');
 	var common = require('../common');
-	var lisk = common.lisk;
+	var onz = common.onz;
 }
 
 describe('delegate.js', function () {
 
-	var delegate = lisk.delegate;
+	var delegate = onz.delegate;
 
 	it('should be ok', function () {
 		(delegate).should.be.ok;
@@ -70,8 +70,8 @@ describe('delegate.js', function () {
 
 		describe('returned delegate', function () {
 
-			var keys = lisk.crypto.getKeys('secret');
-			var secondKeys = lisk.crypto.getKeys('secret 2');
+			var keys = onz.crypto.getKeys('secret');
+			var secondKeys = onz.crypto.getKeys('secret 2');
 
 			beforeEach(function () {
 				trs = createDelegate('secret', 'delegate', 'secret 2');
@@ -143,24 +143,24 @@ describe('delegate.js', function () {
 			});
 
 			it('should be signed correctly', function () {
-				var result = lisk.crypto.verify(trs, keys.publicKey);
+				var result = onz.crypto.verify(trs, keys.publicKey);
 				(result).should.be.ok;
 			});
 
 			it('should be second signed correctly', function () {
-				var result = lisk.crypto.verifySecondSignature(trs, secondKeys.publicKey);
+				var result = onz.crypto.verifySecondSignature(trs, secondKeys.publicKey);
 				(result).should.be.ok;
 			});
 
 			it('should not be signed correctly now', function () {
 				trs.amount = 100;
-				var result = lisk.crypto.verify(trs, keys.publicKey);
+				var result = onz.crypto.verify(trs, keys.publicKey);
 				(result).should.be.not.ok;
 			});
 
 			it('should not be second signed correctly now', function () {
 				trs.amount = 100;
-				var result = lisk.crypto.verify(trs, secondKeys.publicKey);
+				var result = onz.crypto.verify(trs, secondKeys.publicKey);
 				(result).should.be.not.ok;
 			});
 

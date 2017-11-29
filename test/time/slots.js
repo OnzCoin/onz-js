@@ -1,11 +1,11 @@
 if (typeof module !== 'undefined' && module.exports) {
 	var common = require('../common');
-	var lisk   = common.lisk;
+	var onz   = common.onz;
 }
 
 describe('slots.js', function () {
 
-	var slots = lisk.slots;
+	var slots = onz.slots;
 
 	it('should be ok', function () {
 		(slots).should.be.ok;

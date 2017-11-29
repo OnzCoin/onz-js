@@ -1,11 +1,11 @@
 if (typeof module !== 'undefined' && module.exports) {
 	var common = require('../common');
-	var lisk = common.lisk;
+	var onz = common.onz;
 }
 
 describe('crypto.js', function () {
 
-	var crypto = lisk.crypto;
+	var crypto = onz.crypto;
 
 	it('should be ok', function () {
 		(crypto).should.be.ok;
@@ -272,7 +272,7 @@ describe('crypto.js', function () {
 
 			(address).should.be.ok;
 			(address).should.be.type('string');
-			(address).should.be.equal('18160565574430594874L');
+			(address).should.be.equal('18160565574430594874Z');
 		});
 	});
 

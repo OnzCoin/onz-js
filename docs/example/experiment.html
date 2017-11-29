@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Using Lisk-JS</title>
+    <title>Using Onz-JS</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -20,7 +20,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.html"><span><img width="25" height="25" src="lisk.png" alt="Lisk" /></span> lisk-js</a>
+            <a class="navbar-brand" href="../index.html"><span><img width="25" height="25" src="onz.png" alt="Onz" /></span> onz-js</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -38,7 +38,7 @@
             <ul id="sidebar" class="nav nav-stacked affix">
                 <li><a href="#introduction" class="pageLink" data-id="introduction">Introduction</a></li>
                 <li><a href="#get_account" class="pageLink" data-id="get_account">Get Account Info</a></li>
-                <li><a href="#send_lsk" class="pageLink" data-id="send_lsk">Send LSK</a></li>
+                <li><a href="#send_onz" class="pageLink" data-id="send_onz">Send ONZ</a></li>
                 <li><a href="#sign" class="pageLink" data-id="sign">Sign Message</a></li>
                 <li><a href="#verify" class="pageLink" data-id="verify">Verify Message</a></li>
                 <li><a href="#encrypt" class="pageLink" data-id="verify">Encrypt Message</a></li>
@@ -49,10 +49,10 @@
             <div class="row pageX" id="introduction">
                 <h2>Introduction</h2>
 
-                <p>Lisk-js provides full access to the core API and cryptographic functionality of Lisk.</p>
-                <p>The purpose of this page is to demonstrate a small part of the functionality Lisk-js can provide.</p>
-                <p>Any transactions sent from this page are broadcast to <a href="https://testnet-explorer.lisk.io/">the official Lisk testnet</a>, therefore no real LSK can be sent.</p>
-                <p>Create a test account at <a href="https://testnet.lisk.io">the official Lisk testnet login</a></p>
+                <p>Onz-js provides full access to the core API and cryptographic functionality of Onz.</p>
+                <p>The purpose of this page is to demonstrate a small part of the functionality Onz-js can provide.</p>
+                <p>Any transactions sent from this page are broadcast to <a href="https://testnet-explorer.onzcoin.com/">the official Onz testnet</a>, therefore no real ONZ can be sent.</p>
+                <p>Create a test account at <a href="https://testnet.onzcoin.com">the official Onz testnet login</a></p>
             </div>
             <div class="row pageX" id="get_account">
                 <h2>Get Account Info</h2>
@@ -81,12 +81,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row pageX" id="send_lsk">
+            <div class="row pageX" id="send_onz">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Send LSK</h2>
+                        <h2>Send ONZ</h2>
 
-                        <p>Any transactions sent from this page are broadcast to <a href="https://testnet-explorer.lisk.io/">the official Lisk testnet</a>, therefore no real LSK can be sent.</p>
+                        <p>Any transactions sent from this page are broadcast to <a href="https://testnet-explorer.onzcoin.com/">the official Onz testnet</a>, therefore no real ONZ can be sent.</p>
 
                         <form class="experimentForm">
                             <div class="form-group">
@@ -100,14 +100,14 @@
 
                         <form>
                             <div class="form-group">
-                                <label for="send_lsk_recipient">Recipient</label>
-                                <input type="text" class="form-control" id="send_lsk_recipient" placeholder="123...L">
+                                <label for="send_onz_recipient">Recipient</label>
+                                <input type="text" class="form-control" id="send_onz_recipient" placeholder="123...L">
                             </div>
                             <div class="form-group">
-                                <label for="send_lsk_input">Amount</label>
-                                <input type="number" class="form-control" id="send_lsk_input" placeholder="Amount to send">
+                                <label for="send_onz_input">Amount</label>
+                                <input type="number" class="form-control" id="send_onz_input" placeholder="Amount to send">
                             </div>
-                            <input type="submit" id="sendLsk" class="btn btn-primary" value="Send">
+                            <input type="submit" id="sendOnz" class="btn btn-primary" value="Send">
                         </form>
 
                         <br>
@@ -228,8 +228,8 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-<script src="https://gitcdn.xyz/repo/LiskHQ/lisk-js/development/dist/lisk-js.js"></script>
-<script src="js/liskjs-example.js"></script>
+<script src="https://gitcdn.xyz/repo/OnzCoin/onz-js/development/dist/onz-js.js"></script>
+<script src="js/onzjs-example.js"></script>
 
 <script>
 'use strict';

@@ -2,12 +2,12 @@
 if (typeof module !== 'undefined' && module.exports) {
 	var slots = require('../../lib/time/slots');
 	var common = require('../common');
-	var lisk = common.lisk;
+	var onz = common.onz;
 }
 
 describe('dapp.js', function () {
 
-	var dapp = lisk.dapp;
+	var dapp = onz.dapp;
 
 	it('should be object', function () {
 		(dapp).should.be.type('object');
@@ -24,8 +24,8 @@ describe('dapp.js', function () {
 
 		var options = {
 			category: 0,
-			name: 'Lisk Guestbook',
-			description: 'The official Lisk guestbook',
+			name: 'Onz Guestbook',
+			description: 'The official Onz guestbook',
 			tags: 'guestbook message sidechain',
 			type: 0,
 			link: 'https://github.com/MaxKK/guestbookDapp/archive/master.zip',
@@ -77,8 +77,8 @@ describe('dapp.js', function () {
 		});
 
 		describe('returned dapp', function () {
-			// var keys = lisk.crypto.getKeys('secret');
-			var secondKeys = lisk.crypto.getKeys('secret 2');
+			// var keys = onz.crypto.getKeys('secret');
+			var secondKeys = onz.crypto.getKeys('secret 2');
 
 			beforeEach(function () {
 				trs = createDapp('secret', 'secret 2', options);
@@ -188,25 +188,25 @@ describe('dapp.js', function () {
 			});
 
 			it('should be signed correctly', function () {
-				var result = lisk.crypto.verify(trs);
+				var result = onz.crypto.verify(trs);
 				(result).should.be.ok;
 			});
 
 			it('should not be signed correctly now', function () {
 				trs.amount = 10000;
-				var result = lisk.crypto.verify(trs);
+				var result = onz.crypto.verify(trs);
 				(result).should.be.not.ok;
 			});
 
 			it('should be second signed correctly', function () {
 				trs.amount = 0;
-				var result = lisk.crypto.verifySecondSignature(trs, secondKeys.publicKey);
+				var result = onz.crypto.verifySecondSignature(trs, secondKeys.publicKey);
 				(result).should.be.ok;
 			});
 
 			it('should not be second signed correctly now', function () {
 				trs.amount = 10000;
-				var result = lisk.crypto.verifySecondSignature(trs, secondKeys.publicKey);
+				var result = onz.crypto.verifySecondSignature(trs, secondKeys.publicKey);
 				(result).should.be.not.ok;
 			});
 		});

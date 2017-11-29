@@ -1,7 +1,7 @@
 {
-  "name": "lisk-js",
+  "name": "onz-js",
   "version": "0.5.0",
-  "description": "JavaScript library for sending Lisk transactions from the client or server",
+  "description": "JavaScript library for sending Onz transactions from the client or server",
   "main": "index.js",
   "scripts": {
     "test": "nyc mocha",
@@ -9,9 +9,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:LiskHQ/lisk-js.git"
+    "url": "git@github.com:OnzCoin/onz-js.git"
   },
-  "author": "Lisk Foundation <admin@lisk.io>, lightcurve GmbH <admin@lightcurve.io>",
+  "author": "Onz Foundation <admin@onzcoin.com>, lightcurve GmbH <admin@lightcurve.io>",
   "license": "GPL-3",
   "dependencies": {
     "browserify-bignum": "=1.3.0-2",
@@ -19,7 +19,7 @@
     "bytebuffer": "=5.0.1",
     "crypto-browserify": "=3.11.0",
     "ed2curve": "=0.2.1",
-    "js-nacl": "LiskHQ/js-nacl#6dc1417",
+    "js-nacl": "OnzCoin/js-nacl#6dc1417",
     "popsicle": "=9.1.0"
   },
   "devDependencies": {

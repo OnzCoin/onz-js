@@ -1,9 +1,9 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.lisk = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.onz = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (global){
 /**
- * Index module comprising all submodules of lisk-js.
- * @module lisk
- * @main lisk
+ * Index module comprising all submodules of onz-js.
+ * @module onz
+ * @main onz
  */
 
 global.Buffer = global.Buffer || require('buffer').Buffer;
@@ -14,7 +14,7 @@ naclFactory.instantiate(function (nacl) {
 	naclInstance = nacl;
 });
 
-lisk = {
+onz = {
 	crypto : require('./lib/transactions/crypto.js'),
 	dapp: require('./lib/transactions/dapp.js'),
 	delegate : require('./lib/transactions/delegate.js'),
@@ -23,21 +23,21 @@ lisk = {
 	transaction : require('./lib/transactions/transaction.js'),
 	transfer: require('./lib/transactions/transfer'),
 	vote : require('./lib/transactions/vote.js'),
-	api: require('./lib/api/liskApi'),
+	api: require('./lib/api/onzApi'),
 	slots: require('./lib/time/slots')
 };
 
-module.exports = lisk;
+module.exports = onz;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./lib/api/liskApi":2,"./lib/time/slots":5,"./lib/transactions/crypto.js":6,"./lib/transactions/dapp.js":12,"./lib/transactions/delegate.js":13,"./lib/transactions/multisignature.js":14,"./lib/transactions/signature.js":15,"./lib/transactions/transaction.js":16,"./lib/transactions/transfer":17,"./lib/transactions/vote.js":18,"buffer":65,"js-nacl":127}],2:[function(require,module,exports){
+},{"./lib/api/onzApi":2,"./lib/time/slots":5,"./lib/transactions/crypto.js":6,"./lib/transactions/dapp.js":12,"./lib/transactions/delegate.js":13,"./lib/transactions/multisignature.js":14,"./lib/transactions/signature.js":15,"./lib/transactions/transaction.js":16,"./lib/transactions/transfer":17,"./lib/transactions/vote.js":18,"buffer":65,"js-nacl":127}],2:[function(require,module,exports){
 /*
- * Copyright © 2017 Lisk Foundation
+ * Copyright © 2017 Onz Coin Foundation
  *
  * See the LICENSE file at the top-level directory of this distribution
  * for licensing information.
  *
- * Unless otherwise agreed in a custom licensing agreement with the Lisk Foundation,
+ * Unless otherwise agreed in a custom licensing agreement with the Onz Coin Foundation,
  * no part of this software, including this file, may be copied, modified,
  * propagated, or distributed except according to the terms contained in the
  * LICENSE file.
@@ -47,58 +47,58 @@ module.exports = lisk;
  */
 
 /**
- * LiskAPI module provides functions for interfacing with the Lisk network. Providing mechanisms for:
+ * OnzAPI module provides functions for interfacing with the Onz network. Providing mechanisms for:
  *
  * - Retrieval of blockchain data: accounts, blocks, transactions.
- * - Enhancing Lisk security by local signing of transactions and immediate network transmission.
- * - Connecting to Lisk peers or to localhost instance of Lisk core.
- * - Configurable network settings to work in different Lisk environments.
+ * - Enhancing Onz security by local signing of transactions and immediate network transmission.
+ * - Connecting to Onz peers or to localhost instance of Onz core.
+ * - Configurable network settings to work in different Onz environments.
  *
  *     var options = {
  *         ssl: false,
  *         node: '',
  *         randomPeer: true,
  *         testnet: true,
- *         port: '7000',
+ *         port: '10998',
  *         bannedPeers: [],
  *         nethash: ''
  *     };
  *
- *     var lisk = require('lisk-js');
- *     var LSK = lisk.api(options);
+ *     var onz = require('onz-js');
+ *     var ONZ = onz.api(options);
  *
- * @class lisk.api()
- * @main lisk
+ * @class onz.api()
+ * @main onz
  */
 
-var LiskJS = {};
-LiskJS.crypto = require('../transactions/crypto');
+var OnzJS = {};
+OnzJS.crypto = require('../transactions/crypto');
 var parseOfflineRequest = require('./parseTransaction');
 
 var popsicle = require('popsicle');
 
-function LiskAPI (options) {
-	if (!(this instanceof LiskAPI)) {
-		return new LiskAPI(options);
+function OnzAPI (options) {
+	if (!(this instanceof OnzAPI)) {
+		return new OnzAPI(options);
 	}
 
 	options = options || {};
 
 	this.defaultPeers = [
-		'node01.lisk.io',
-		'node02.lisk.io',
-		'node03.lisk.io',
-		'node04.lisk.io',
-		'node05.lisk.io',
-		'node06.lisk.io',
-		'node07.lisk.io',
-		'node08.lisk.io'
+		'node01.onzcoin.com',
+		'node02.onzcoin.com',
+		'node03.onzcoin.com',
+		'node04.onzcoin.com',
+		'node05.onzcoin.com',
+		'node06.onzcoin.com',
+		'node07.onzcoin.com',
+		'node08.onzcoin.com'
 	];
 
 	this.defaultSSLPeers = this.defaultPeers;
 
 	this.defaultTestnetPeers = [
-		'testnet.lisk.io'
+		'testnet.onzcoin.com'
 	];
 
 	this.options = options;
@@ -110,7 +110,7 @@ function LiskAPI (options) {
 	this.testnet = options.testnet || false;
 	this.bannedPeers = [];
 	this.currentPeer = options.node || this.selectNode();
-	this.port = (options.port === '' || options.port) ? options.port : (options.testnet ? 7000 : (options.ssl ? 443 : 8000));
+	this.port = (options.port === '' || options.port) ? options.port : (options.testnet ? 10998 : (options.ssl ? 443 : 11000));
 	this.parseOfflineRequests = parseOfflineRequest;
 	this.nethash = this.getNethash(options.nethash);
 }
@@ -120,22 +120,22 @@ function LiskAPI (options) {
  * @return {object}
  */
 
-LiskAPI.prototype.netHashOptions = function () {
+OnzAPI.prototype.netHashOptions = function () {
 	return {
 		testnet: {
 			'Content-Type': 'application/json',
-			'nethash': 'da3ed6a45429278bac2666961289ca17ad86595d33b31037615d4b8e8f158bba',
-			'broadhash': 'da3ed6a45429278bac2666961289ca17ad86595d33b31037615d4b8e8f158bba',
-			'os': 'lisk-js-api',
+			'nethash': 'c6118f371269a8f3c5e26ce2d24fd168131ea356e22bfe44600a6b3122b1dabc',
+			'broadhash': 'c6118f371269a8f3c5e26ce2d24fd168131ea356e22bfe44600a6b3122b1dabc',
+			'os': 'onz-js-api',
 			'version': '1.0.0',
 			'minVersion': '>=0.5.0',
 			'port': this.port
 		},
 		mainnet: {
 			'Content-Type': 'application/json',
-			'nethash': 'ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511',
-			'broadhash': 'ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511',
-			'os': 'lisk-js-api',
+			'nethash': '053ef5853fc3d1e73cc55186c789f69be14c14d48bf748b4c9a5775c8de1056b',
+			'broadhash': '053ef5853fc3d1e73cc55186c789f69be14c14d48bf748b4c9a5775c8de1056b',
+			'os': 'onz-js-api',
 			'version': '1.0.0',
 			'minVersion': '>=0.5.0',
 			'port': this.port
@@ -148,7 +148,7 @@ LiskAPI.prototype.netHashOptions = function () {
  * @return {object}
  */
 
-LiskAPI.prototype.getNethash = function (providedNethash) {
+OnzAPI.prototype.getNethash = function (providedNethash) {
 	var NetHash = (this.testnet) ? this.netHashOptions().testnet : this.netHashOptions().mainnet;
 
 	if (providedNethash) {
@@ -164,7 +164,7 @@ LiskAPI.prototype.getNethash = function (providedNethash) {
  * @return {object}
  */
 
-LiskAPI.prototype.listPeers = function () {
+OnzAPI.prototype.listPeers = function () {
 	return {
 		official: this.defaultPeers.map(function (node) { return {node: node};}),
 		ssl: this.defaultSSLPeers.map(function (node) { return {node: node, ssl: true};}),
@@ -178,7 +178,7 @@ LiskAPI.prototype.listPeers = function () {
  * @return {object}
  */
 
-LiskAPI.prototype.setNode = function (node) {
+OnzAPI.prototype.setNode = function (node) {
 	this.currentPeer = node || this.selectNode();
 	return this.currentPeer;
 };
@@ -188,16 +188,16 @@ LiskAPI.prototype.setNode = function (node) {
  * @param testnet boolean
  */
 
-LiskAPI.prototype.setTestnet = function (testnet) {
+OnzAPI.prototype.setTestnet = function (testnet) {
 	if (this.testnet !== testnet) {
 		this.testnet = testnet;
 		this.bannedPeers = [];
-		this.port = 7000;
+		this.port = 10998;
 		this.selectNode();
 	} else {
 		this.testnet = false;
 		this.bannedPeers = [];
-		this.port = 8000;
+		this.port = 11000;
 		this.selectNode();
 	}
 };
@@ -207,7 +207,7 @@ LiskAPI.prototype.setTestnet = function (testnet) {
  * @param ssl boolean
  */
 
-LiskAPI.prototype.setSSL = function (ssl) {
+OnzAPI.prototype.setSSL = function (ssl) {
 	if (this.ssl !== ssl) {
 		this.ssl = ssl;
 		this.bannedPeers = [];
@@ -220,7 +220,7 @@ LiskAPI.prototype.setSSL = function (ssl) {
  * @return url string
  */
 
-LiskAPI.prototype.getFullUrl = function () {
+OnzAPI.prototype.getFullUrl = function () {
 	var nodeUrl = this.currentPeer;
 
 	if (this.port) {
@@ -235,7 +235,7 @@ LiskAPI.prototype.getFullUrl = function () {
  * @return prefix string
  */
 
-LiskAPI.prototype.getURLPrefix = function () {
+OnzAPI.prototype.getURLPrefix = function () {
 	if (this.ssl) {
 		return 'https';
 	} else {
@@ -248,7 +248,7 @@ LiskAPI.prototype.getURLPrefix = function () {
  * @return peer string
  */
 
-LiskAPI.prototype.selectNode = function () {
+OnzAPI.prototype.selectNode = function () {
 	var currentRandomPeer;
 
 	if (this.options.node) {
@@ -274,7 +274,7 @@ LiskAPI.prototype.selectNode = function () {
  * @return peer string
  */
 
-LiskAPI.prototype.getRandomPeer = function () {
+OnzAPI.prototype.getRandomPeer = function () {
 	var peers = (this.ssl) ? this.defaultSSLPeers : this.defaultPeers;
 	if (this.testnet) peers = this.defaultTestnetPeers;
 
@@ -286,7 +286,7 @@ LiskAPI.prototype.getRandomPeer = function () {
  * @method banNode
  */
 
-LiskAPI.prototype.banNode = function () {
+OnzAPI.prototype.banNode = function () {
 	if (this.bannedPeers.indexOf(this.currentPeer) === -1) this.bannedPeers.push(this.currentPeer);
 	this.selectNode();
 };
@@ -296,7 +296,7 @@ LiskAPI.prototype.banNode = function () {
  * @return reDial boolean
  */
 
-LiskAPI.prototype.checkReDial = function () {
+OnzAPI.prototype.checkReDial = function () {
 	var peers = (this.ssl) ? this.defaultSSLPeers : this.defaultPeers;
 	if (this.testnet) peers = this.defaultTestnetPeers;
 
@@ -335,7 +335,7 @@ LiskAPI.prototype.checkReDial = function () {
  * @return options object
  */
 
-LiskAPI.prototype.checkOptions = function (options) {
+OnzAPI.prototype.checkOptions = function (options) {
 	Object.keys(options).forEach(function (optionKey) {
 		if (options[optionKey] === undefined || options[optionKey] !== options[optionKey]) {
 			throw { message: 'parameter value "'+optionKey+'" should not be '+ options[optionKey]  };
@@ -401,7 +401,7 @@ function optionallyCallCallback (callback, result) {
  * @return APIanswer Object
  */
 
-LiskAPI.prototype.sendRequest = function (requestType, options, callback) {
+OnzAPI.prototype.sendRequest = function (requestType, options, callback) {
 	callback = callback || options;
 	options = typeof options !== 'function' && typeof options !== 'undefined' ? this.checkOptions(options) : {};
 
@@ -420,7 +420,7 @@ LiskAPI.prototype.sendRequest = function (requestType, options, callback) {
  * @return APIcall Promise
  */
 
-LiskAPI.prototype.sendRequestPromise = function (requestType, options) {
+OnzAPI.prototype.sendRequestPromise = function (requestType, options) {
 	if (this.checkRequest(requestType, options) !== 'NOACTION') {
 		var requestValues = this.changeRequest(requestType, options);
 		return this.doPopsicleRequest(requestValues);
@@ -438,7 +438,7 @@ LiskAPI.prototype.sendRequestPromise = function (requestType, options) {
  * @return APIcall Promise
  */
 
-LiskAPI.prototype.doPopsicleRequest = function (requestValue) {
+OnzAPI.prototype.doPopsicleRequest = function (requestValue) {
 	return popsicle.request({
 		method: requestValue.requestMethod,
 		url: requestValue.requestUrl,
@@ -455,7 +455,7 @@ LiskAPI.prototype.doPopsicleRequest = function (requestValue) {
  * @return httpRequest object
  */
 
-LiskAPI.prototype.changeRequest = function (requestType, options) {
+OnzAPI.prototype.changeRequest = function (requestType, options) {
 	var returnValue = {
 		requestMethod: '',
 		requestUrl: '',
@@ -506,7 +506,7 @@ LiskAPI.prototype.changeRequest = function (requestType, options) {
  * @return method string
  */
 
-LiskAPI.prototype.checkRequest = function (requestType, options) {
+OnzAPI.prototype.checkRequest = function (requestType, options) {
 	return parseOfflineRequest(requestType, options).requestMethod;
 };
 
@@ -517,7 +517,7 @@ LiskAPI.prototype.checkRequest = function (requestType, options) {
  * @return serialisedData string
  */
 
-LiskAPI.prototype.serialiseHttpData = function (data) {
+OnzAPI.prototype.serialiseHttpData = function (data) {
 	var serialised;
 
 	serialised = this.trimObj(data);
@@ -534,7 +534,7 @@ LiskAPI.prototype.serialiseHttpData = function (data) {
  * @return trimmed string
  */
 
-LiskAPI.prototype.trimObj = function (obj) {
+OnzAPI.prototype.trimObj = function (obj) {
 	if (!Array.isArray(obj) && typeof obj !== 'object') return obj;
 
 	return Object.keys(obj).reduce(function (acc, key) {
@@ -550,7 +550,7 @@ LiskAPI.prototype.trimObj = function (obj) {
  * @return query string
  */
 
-LiskAPI.prototype.toQueryString = function (obj) {
+OnzAPI.prototype.toQueryString = function (obj) {
 	var parts = [];
 
 	for (var i in obj) {
@@ -569,9 +569,9 @@ LiskAPI.prototype.toQueryString = function (obj) {
  * @return keys object
  */
 
-LiskAPI.prototype.getAddressFromSecret = function (secret) {
-	var accountKeys = LiskJS.crypto.getKeys(secret);
-	var accountAddress = LiskJS.crypto.getAddress(accountKeys.publicKey);
+OnzAPI.prototype.getAddressFromSecret = function (secret) {
+	var accountKeys = OnzJS.crypto.getKeys(secret);
+	var accountAddress = OnzJS.crypto.getAddress(accountKeys.publicKey);
 
 	return {
 		address: accountAddress,
@@ -587,7 +587,7 @@ LiskAPI.prototype.getAddressFromSecret = function (secret) {
  * @return API object
  */
 
-LiskAPI.prototype.getAccount = function (address, callback) {
+OnzAPI.prototype.getAccount = function (address, callback) {
 	return this.sendRequest('accounts', { address: address }, function (result) {
 		return callback(result);
 	});
@@ -601,7 +601,7 @@ LiskAPI.prototype.getAccount = function (address, callback) {
  * @return API object
  */
 
-LiskAPI.prototype.listActiveDelegates = function (limit, callback) {
+OnzAPI.prototype.listActiveDelegates = function (limit, callback) {
 	this.sendRequest('delegates/', { limit: limit}, function (result) {
 		return callback(result);
 	});
@@ -615,7 +615,7 @@ LiskAPI.prototype.listActiveDelegates = function (limit, callback) {
  * @return API object
  */
 
-LiskAPI.prototype.listStandbyDelegates = function (limit, callback) {
+OnzAPI.prototype.listStandbyDelegates = function (limit, callback) {
 	var standByOffset = 101;
 
 	this.sendRequest('delegates/', { limit: limit, orderBy: 'rate:asc', offset: standByOffset}, function (result) {
@@ -631,7 +631,7 @@ LiskAPI.prototype.listStandbyDelegates = function (limit, callback) {
  * @return API object
  */
 
-LiskAPI.prototype.searchDelegateByUsername = function (username, callback) {
+OnzAPI.prototype.searchDelegateByUsername = function (username, callback) {
 	this.sendRequest('delegates/search/', { q: username }, function (result) {
 		return callback(result);
 	});
@@ -645,7 +645,7 @@ LiskAPI.prototype.searchDelegateByUsername = function (username, callback) {
  * @return API object
  */
 
-LiskAPI.prototype.listBlocks = function (amount, callback) {
+OnzAPI.prototype.listBlocks = function (amount, callback) {
 	this.sendRequest('blocks', { limit: amount }, function (result) {
 		return callback(result);
 	});
@@ -659,7 +659,7 @@ LiskAPI.prototype.listBlocks = function (amount, callback) {
  * @return API object
  */
 
-LiskAPI.prototype.listForgedBlocks = function (publicKey, callback) {
+OnzAPI.prototype.listForgedBlocks = function (publicKey, callback) {
 	this.sendRequest('blocks', { generatorPublicKey: publicKey }, function (result) {
 		return callback(result);
 	});
@@ -673,7 +673,7 @@ LiskAPI.prototype.listForgedBlocks = function (publicKey, callback) {
  * @return API object
  */
 
-LiskAPI.prototype.getBlock = function (block, callback) {
+OnzAPI.prototype.getBlock = function (block, callback) {
 	this.sendRequest('blocks', { height: block }, function (result) {
 		return callback(result);
 	});
@@ -689,7 +689,7 @@ LiskAPI.prototype.getBlock = function (block, callback) {
  * @return API object
  */
 
-LiskAPI.prototype.listTransactions = function (address, limit, offset, callback) {
+OnzAPI.prototype.listTransactions = function (address, limit, offset, callback) {
 	offset = offset || '0';
 	limit = limit || '20';
 	this.sendRequest('transactions', { senderId: address, recipientId: address, limit: limit, offset: offset, orderBy: 'timestamp:desc' }, function (result) {
@@ -705,7 +705,7 @@ LiskAPI.prototype.listTransactions = function (address, limit, offset, callback)
  * @return API object
  */
 
-LiskAPI.prototype.getTransaction = function (transactionId, callback) {
+OnzAPI.prototype.getTransaction = function (transactionId, callback) {
 	this.sendRequest('transactions/get', { id: transactionId }, function (result) {
 		return callback(result);
 	});
@@ -719,7 +719,7 @@ LiskAPI.prototype.getTransaction = function (transactionId, callback) {
  * @return API object
  */
 
-LiskAPI.prototype.listVotes = function (address, callback) {
+OnzAPI.prototype.listVotes = function (address, callback) {
 	this.sendRequest('accounts/delegates', { address: address }, function (result) {
 		return callback(result);
 	});
@@ -733,14 +733,14 @@ LiskAPI.prototype.listVotes = function (address, callback) {
  * @return API object
  */
 
-LiskAPI.prototype.listVoters = function (publicKey, callback) {
+OnzAPI.prototype.listVoters = function (publicKey, callback) {
 	this.sendRequest('delegates/voters', { publicKey: publicKey }, function (result) {
 		return callback(result);
 	});
 };
 
 /**
- * @method sendLSK
+ * @method sendONZ
  * @param recipient
  * @param amount
  * @param secret
@@ -750,7 +750,7 @@ LiskAPI.prototype.listVoters = function (publicKey, callback) {
  * @return API object
  */
 
-LiskAPI.prototype.sendLSK = function (recipient, amount, secret, secondSecret, callback) {
+OnzAPI.prototype.sendONZ = function (recipient, amount, secret, secondSecret, callback) {
 	this.sendRequest('transactions', { recipientId: recipient, amount: amount, secret: secret, secondSecret: secondSecret }, function (response) {
 		return callback(response);
 	});
@@ -763,7 +763,7 @@ LiskAPI.prototype.sendLSK = function (recipient, amount, secret, secondSecret, c
  * @return API object
  */
 
-LiskAPI.prototype.listMultisignatureTransactions = function (callback) {
+OnzAPI.prototype.listMultisignatureTransactions = function (callback) {
 	this.sendRequest('transactions/multisignatures', function (result) {
 		return callback(result);
 	});
@@ -777,22 +777,22 @@ LiskAPI.prototype.listMultisignatureTransactions = function (callback) {
  * @return API object
  */
 
-LiskAPI.prototype.getMultisignatureTransaction = function (transactionId, callback) {
+OnzAPI.prototype.getMultisignatureTransaction = function (transactionId, callback) {
 	this.sendRequest('transactions/multisignatures/get', { id: transactionId }, function (result) {
 		return callback(result);
 	});
 };
 
-module.exports = LiskAPI;
+module.exports = OnzAPI;
 
 },{"../transactions/crypto":6,"./parseTransaction":3,"popsicle":151}],3:[function(require,module,exports){
 /*
- * Copyright © 2017 Lisk Foundation
+ * Copyright © 2017 Onz Coin Foundation
  *
  * See the LICENSE file at the top-level directory of this distribution
  * for licensing information.
  *
- * Unless otherwise agreed in a custom licensing agreement with the Lisk Foundation,
+ * Unless otherwise agreed in a custom licensing agreement with the Onz Coin Foundation,
  * no part of this software, including this file, may be copied, modified,
  * propagated, or distributed except according to the terms contained in the
  * LICENSE file.
@@ -801,15 +801,15 @@ module.exports = LiskAPI;
  *
  */
 
-var LiskJS = {};
-LiskJS.crypto = require('../transactions/crypto');
-LiskJS.dapp = require('../transactions/dapp');
-LiskJS.multisignature = require('../transactions/multisignature');
-LiskJS.signature = require('../transactions/signature');
-LiskJS.delegate = require('../transactions/delegate');
-LiskJS.transaction = require('../transactions/transaction');
-LiskJS.transfer = require('../transactions/transfer');
-LiskJS.vote = require('../transactions/vote');
+var OnzJS = {};
+OnzJS.crypto = require('../transactions/crypto');
+OnzJS.dapp = require('../transactions/dapp');
+OnzJS.multisignature = require('../transactions/multisignature');
+OnzJS.signature = require('../transactions/signature');
+OnzJS.delegate = require('../transactions/delegate');
+OnzJS.transaction = require('../transactions/transaction');
+OnzJS.transfer = require('../transactions/transfer');
+OnzJS.vote = require('../transactions/vote');
 
 /**
  * ParseOfflineRequest module provides automatic routing of new transaction requests which can be signed locally, and then broadcast without any passphrases being transmitted.
@@ -817,7 +817,7 @@ LiskJS.vote = require('../transactions/vote');
  * @method ParseOfflineRequest
  * @param requestType
  * @param options
- * @main lisk
+ * @main onz
  */
 
 function ParseOfflineRequest (requestType, options) {
@@ -895,8 +895,8 @@ ParseOfflineRequest.prototype.httpGETPUTorPOST = function (requestType) {
 
 ParseOfflineRequest.prototype.checkOfflineRequestBefore = function () {
 	if (this.options && this.options.hasOwnProperty('secret')) {
-		var accountKeys = LiskJS.crypto.getKeys(this.options['secret']);
-		var accountAddress = LiskJS.crypto.getAddress(accountKeys.publicKey);
+		var accountKeys = OnzJS.crypto.getKeys(this.options['secret']);
+		var accountAddress = OnzJS.crypto.getAddress(accountKeys.publicKey);
 	}
 
 	var OfflineRequestThis = this;
@@ -920,7 +920,7 @@ ParseOfflineRequest.prototype.checkOfflineRequestBefore = function () {
 		'dapps/launch': 'POST',
 		'dapps/stop': 'POST',
 		'multisignatures/sign': function () {
-			var transaction = LiskJS.multisignature.signTransaction(OfflineRequestThis.options['transaction'], OfflineRequestThis.options['secret']);
+			var transaction = OnzJS.multisignature.signTransaction(OfflineRequestThis.options['transaction'], OfflineRequestThis.options['secret']);
 
 			return {
 				requestMethod: 'POST',
@@ -929,7 +929,7 @@ ParseOfflineRequest.prototype.checkOfflineRequestBefore = function () {
 			};
 		},
 		'accounts/delegates': function () {
-			var transaction = LiskJS.vote.createVote(OfflineRequestThis.options['secret'], OfflineRequestThis.options['delegates'], OfflineRequestThis.options['secondSecret'], OfflineRequestThis.options['timeOffset']);
+			var transaction = OnzJS.vote.createVote(OfflineRequestThis.options['secret'], OfflineRequestThis.options['delegates'], OfflineRequestThis.options['secondSecret'], OfflineRequestThis.options['timeOffset']);
 
 			return {
 				requestMethod: 'POST',
@@ -938,7 +938,7 @@ ParseOfflineRequest.prototype.checkOfflineRequestBefore = function () {
 			};
 		},
 		'transactions': function () {
-			var transaction = LiskJS.transaction.createTransaction(OfflineRequestThis.options['recipientId'], OfflineRequestThis.options['amount'], OfflineRequestThis.options['secret'], OfflineRequestThis.options['secondSecret'], OfflineRequestThis.options['timeOffset']);
+			var transaction = OnzJS.transaction.createTransaction(OfflineRequestThis.options['recipientId'], OfflineRequestThis.options['amount'], OfflineRequestThis.options['secret'], OfflineRequestThis.options['secondSecret'], OfflineRequestThis.options['timeOffset']);
 
 			return {
 				requestMethod: 'POST',
@@ -947,7 +947,7 @@ ParseOfflineRequest.prototype.checkOfflineRequestBefore = function () {
 			};
 		},
 		'signatures': function () {
-			var transaction = LiskJS.signature.createSignature(OfflineRequestThis.options['secret'], OfflineRequestThis.options['secondSecret'], OfflineRequestThis.options['timeOffset']);
+			var transaction = OnzJS.signature.createSignature(OfflineRequestThis.options['secret'], OfflineRequestThis.options['secondSecret'], OfflineRequestThis.options['timeOffset']);
 
 			return {
 				requestMethod: 'POST',
@@ -956,7 +956,7 @@ ParseOfflineRequest.prototype.checkOfflineRequestBefore = function () {
 			};
 		},
 		'delegates': function () {
-			var transaction = LiskJS.delegate.createDelegate(OfflineRequestThis.options['secret'], OfflineRequestThis.options['username'], OfflineRequestThis.options['secondSecret'], OfflineRequestThis.options['timeOffset']);
+			var transaction = OnzJS.delegate.createDelegate(OfflineRequestThis.options['secret'], OfflineRequestThis.options['username'], OfflineRequestThis.options['secondSecret'], OfflineRequestThis.options['timeOffset']);
 			return {
 				requestMethod: 'POST',
 				requestUrl: 'transactions',
@@ -976,7 +976,7 @@ ParseOfflineRequest.prototype.checkOfflineRequestBefore = function () {
 				secondSecret: OfflineRequestThis.options['secondSecret']
 			};
 
-			var transaction = LiskJS.dapp.createDapp(DappOptions);
+			var transaction = OnzJS.dapp.createDapp(DappOptions);
 
 			return {
 				requestMethod: 'POST',
@@ -985,7 +985,7 @@ ParseOfflineRequest.prototype.checkOfflineRequestBefore = function () {
 			};
 		},
 		'multisignatures': function () {
-			var transaction = LiskJS.multisignature.createMultisignature(OfflineRequestThis.options['secret'], OfflineRequestThis.options['secondSecret'], OfflineRequestThis.options['keysgroup'], OfflineRequestThis.options['lifetime'], OfflineRequestThis.options['min'], OfflineRequestThis.options['timeOffset']);
+			var transaction = OnzJS.multisignature.createMultisignature(OfflineRequestThis.options['secret'], OfflineRequestThis.options['secondSecret'], OfflineRequestThis.options['keysgroup'], OfflineRequestThis.options['lifetime'], OfflineRequestThis.options['min'], OfflineRequestThis.options['timeOffset']);
 
 			return {
 				requestMethod: 'POST',
@@ -1007,8 +1007,8 @@ ParseOfflineRequest.prototype.checkOfflineRequestBefore = function () {
 
 ParseOfflineRequest.prototype.transactionOutputAfter = function (requestAnswer) {
 	if (this.options['secret']) {
-		var accountKeys = LiskJS.crypto.getKeys(this.options['secret']);
-		var accountAddress = LiskJS.crypto.getAddress(accountKeys.publicKey);
+		var accountKeys = OnzJS.crypto.getKeys(this.options['secret']);
+		var accountAddress = OnzJS.crypto.getAddress(accountKeys.publicKey);
 	}
 
 	var transformAnswer;
@@ -1135,12 +1135,12 @@ module.exports = {
 
 },{}],5:[function(require,module,exports){
 /*
- * Copyright © 2017 Lisk Foundation
+ * Copyright © 2017 Onz Coin Foundation
  *
  * See the LICENSE file at the top-level directory of this distribution
  * for licensing information.
  *
- * Unless otherwise agreed in a custom licensing agreement with the Lisk Foundation,
+ * Unless otherwise agreed in a custom licensing agreement with the Onz Coin Foundation,
  * no part of this software, including this file, may be copied, modified,
  * propagated, or distributed except according to the terms contained in the
  * LICENSE file.
@@ -1149,7 +1149,7 @@ module.exports = {
  *
  */
 /**
- * Slots module provides functions for calculating time and slots against the Lisk blockchain epoch.
+ * Slots module provides functions for calculating time and slots against the Onz blockchain epoch.
  * @class slots
  *
  * @method beginEpochTime
@@ -1277,12 +1277,12 @@ module.exports = {
 },{}],6:[function(require,module,exports){
 (function (Buffer){
 /*
- * Copyright © 2017 Lisk Foundation
+ * Copyright © 2017 Onz Coin Foundation
  *
  * See the LICENSE file at the top-level directory of this distribution
  * for licensing information.
  *
- * Unless otherwise agreed in a custom licensing agreement with the Lisk Foundation,
+ * Unless otherwise agreed in a custom licensing agreement with the Onz Coin Foundation,
  * no part of this software, including this file, may be copied, modified,
  * propagated, or distributed except according to the terms contained in the
  * LICENSE file.
@@ -1803,7 +1803,7 @@ function getAddress (publicKey) {
 		temp[i] = publicKeyHash[7 - i];
 	}
 
-	var address = bignum.fromBuffer(temp).toString() + 'L';
+	var address = bignum.fromBuffer(temp).toString() + 'Z';
 	return address;
 }
 
@@ -1845,12 +1845,12 @@ module.exports = {
 }).call(this,require("buffer").Buffer)
 },{"../constants.js":4,"./crypto/index":9,"browserify-bignum":53,"buffer":65,"bytebuffer":69,"crypto-browserify":78}],7:[function(require,module,exports){
 /*
- * Copyright © 2017 Lisk Foundation
+ * Copyright © 2017 Onz Coin Foundation
  *
  * See the LICENSE file at the top-level directory of this distribution
  * for licensing information.
  *
- * Unless otherwise agreed in a custom licensing agreement with the Lisk Foundation,
+ * Unless otherwise agreed in a custom licensing agreement with the Onz Coin Foundation,
  * no part of this software, including this file, may be copied, modified,
  * propagated, or distributed except according to the terms contained in the
  * LICENSE file.
@@ -1891,12 +1891,12 @@ module.exports = {
 
 },{"buffer/":68}],8:[function(require,module,exports){
 /*
- * Copyright © 2017 Lisk Foundation
+ * Copyright © 2017 Onz Coin Foundation
  *
  * See the LICENSE file at the top-level directory of this distribution
  * for licensing information.
  *
- * Unless otherwise agreed in a custom licensing agreement with the Lisk Foundation,
+ * Unless otherwise agreed in a custom licensing agreement with the Onz Coin Foundation,
  * no part of this software, including this file, may be copied, modified,
  * propagated, or distributed except according to the terms contained in the
  * LICENSE file.
@@ -1954,12 +1954,12 @@ module.exports = {
 
 },{"./convert":7,"./hash":8,"./keys":10,"./sign":11}],10:[function(require,module,exports){
 /*
- * Copyright © 2017 Lisk Foundation
+ * Copyright © 2017 Onz Coin Foundation
  *
  * See the LICENSE file at the top-level directory of this distribution
  * for licensing information.
  *
- * Unless otherwise agreed in a custom licensing agreement with the Lisk Foundation,
+ * Unless otherwise agreed in a custom licensing agreement with the Onz Coin Foundation,
  * no part of this software, including this file, may be copied, modified,
  * propagated, or distributed except according to the terms contained in the
  * LICENSE file.
@@ -1998,7 +1998,7 @@ function getAddressFromPublicKey (publicKey) {
 	var publicKeyHash = hash.getSha256Hash(publicKey, 'hex');
 
 	var publicKeyTransform = convert.useFirstEightBufferEntriesReversed(publicKeyHash);
-	var address = bignum.fromBuffer(publicKeyTransform).toString() + 'L';
+	var address = bignum.fromBuffer(publicKeyTransform).toString() + 'Z';
 
 	return address;
 }
@@ -2013,12 +2013,12 @@ module.exports = {
 },{"./convert":7,"./hash":8,"browserify-bignum":53,"buffer/":68}],11:[function(require,module,exports){
 (function (Buffer){
 /*
- * Copyright © 2017 Lisk Foundation
+ * Copyright © 2017 Onz Coin Foundation
  *
  * See the LICENSE file at the top-level directory of this distribution
  * for licensing information.
  *
- * Unless otherwise agreed in a custom licensing agreement with the Lisk Foundation,
+ * Unless otherwise agreed in a custom licensing agreement with the Onz Coin Foundation,
  * no part of this software, including this file, may be copied, modified,
  * propagated, or distributed except according to the terms contained in the
  * LICENSE file.
@@ -2043,14 +2043,14 @@ function signMessageWithSecret (message, secret) {
 }
 
 function signAndPrintMessage (message, secret) {
-	var signedMessageHeader = '-----BEGIN LISK SIGNED MESSAGE-----';
+	var signedMessageHeader = '-----BEGIN ONZ SIGNED MESSAGE-----';
 	var messageHeader = '-----MESSAGE-----';
 	var plainMessage = message;
 	var pubklicKeyHeader = '-----PUBLIC KEY-----';
 	var publicKey = keys.getPrivateAndPublicKeyFromSecret(secret).publicKey;
 	var signatureHeader = '-----SIGNATURE-----';
 	var signedMessage = signMessageWithSecret(message, secret);
-	var signatureFooter = '-----END LISK SIGNED MESSAGE-----';
+	var signatureFooter = '-----END ONZ SIGNED MESSAGE-----';
 
 	var outputArray = [
 		signedMessageHeader, messageHeader, plainMessage, pubklicKeyHeader, publicKey, signatureHeader, signedMessage, signatureFooter
@@ -2060,14 +2060,14 @@ function signAndPrintMessage (message, secret) {
 }
 
 function printSignedMessage (message, signedMessage, publicKey) {
-	var signedMessageHeader = '-----BEGIN LISK SIGNED MESSAGE-----';
+	var signedMessageHeader = '-----BEGIN ONZ SIGNED MESSAGE-----';
 	var messageHeader = '-----MESSAGE-----';
 	var plainMessage = message;
 	var publicKeyHeader = '-----PUBLIC KEY-----';
 	var printPublicKey = publicKey;
 	var signatureHeader = '-----SIGNATURE-----';
 	var printSignedMessage = signedMessage;
-	var signatureFooter = '-----END LISK SIGNED MESSAGE-----';
+	var signatureFooter = '-----END ONZ SIGNED MESSAGE-----';
 
 	var outputArray = [
 		signedMessageHeader, messageHeader, plainMessage, publicKeyHeader, printPublicKey, signatureHeader, printSignedMessage, signatureFooter
@@ -2216,12 +2216,12 @@ module.exports = {
 }).call(this,require("buffer").Buffer)
 },{"./convert":7,"./hash":8,"./keys":10,"buffer":65,"crypto":78,"ed2curve":89}],12:[function(require,module,exports){
 /*
- * Copyright © 2017 Lisk Foundation
+ * Copyright © 2017 Onz Coin Foundation
  *
  * See the LICENSE file at the top-level directory of this distribution
  * for licensing information.
  *
- * Unless otherwise agreed in a custom licensing agreement with the Lisk Foundation,
+ * Unless otherwise agreed in a custom licensing agreement with the Onz Coin Foundation,
  * no part of this software, including this file, may be copied, modified,
  * propagated, or distributed except according to the terms contained in the
  * LICENSE file.
@@ -2290,12 +2290,12 @@ module.exports = {
 
 },{"../constants.js":4,"../time/slots.js":5,"./crypto.js":6}],13:[function(require,module,exports){
 /*
- * Copyright © 2017 Lisk Foundation
+ * Copyright © 2017 Onz Coin Foundation
  *
  * See the LICENSE file at the top-level directory of this distribution
  * for licensing information.
  *
- * Unless otherwise agreed in a custom licensing agreement with the Lisk Foundation,
+ * Unless otherwise agreed in a custom licensing agreement with the Onz Coin Foundation,
  * no part of this software, including this file, may be copied, modified,
  * propagated, or distributed except according to the terms contained in the
  * LICENSE file.
@@ -2359,12 +2359,12 @@ module.exports = {
 
 },{"../constants.js":4,"../time/slots.js":5,"./crypto.js":6}],14:[function(require,module,exports){
 /*
- * Copyright © 2017 Lisk Foundation
+ * Copyright © 2017 Onz Coin Foundation
  *
  * See the LICENSE file at the top-level directory of this distribution
  * for licensing information.
  *
- * Unless otherwise agreed in a custom licensing agreement with the Lisk Foundation,
+ * Unless otherwise agreed in a custom licensing agreement with the Onz Coin Foundation,
  * no part of this software, including this file, may be copied, modified,
  * propagated, or distributed except according to the terms contained in the
  * LICENSE file.
@@ -2494,12 +2494,12 @@ module.exports = {
 
 },{"../constants.js":4,"../time/slots.js":5,"./crypto.js":6}],15:[function(require,module,exports){
 /*
- * Copyright © 2017 Lisk Foundation
+ * Copyright © 2017 Onz Coin Foundation
  *
  * See the LICENSE file at the top-level directory of this distribution
  * for licensing information.
  *
- * Unless otherwise agreed in a custom licensing agreement with the Lisk Foundation,
+ * Unless otherwise agreed in a custom licensing agreement with the Onz Coin Foundation,
  * no part of this software, including this file, may be copied, modified,
  * propagated, or distributed except according to the terms contained in the
  * LICENSE file.
@@ -2572,12 +2572,12 @@ module.exports = {
 
 },{"../constants.js":4,"../time/slots.js":5,"./crypto.js":6}],16:[function(require,module,exports){
 /*
- * Copyright © 2017 Lisk Foundation
+ * Copyright © 2017 Onz Coin Foundation
  *
  * See the LICENSE file at the top-level directory of this distribution
  * for licensing information.
  *
- * Unless otherwise agreed in a custom licensing agreement with the Lisk Foundation,
+ * Unless otherwise agreed in a custom licensing agreement with the Onz Coin Foundation,
  * no part of this software, including this file, may be copied, modified,
  * propagated, or distributed except according to the terms contained in the
  * LICENSE file.
@@ -2637,12 +2637,12 @@ module.exports = {
 
 },{"../constants.js":4,"../time/slots.js":5,"./crypto.js":6}],17:[function(require,module,exports){
 /*
- * Copyright © 2017 Lisk Foundation
+ * Copyright © 2017 Onz Coin Foundation
  *
  * See the LICENSE file at the top-level directory of this distribution
  * for licensing information.
  *
- * Unless otherwise agreed in a custom licensing agreement with the Lisk Foundation,
+ * Unless otherwise agreed in a custom licensing agreement with the Onz Coin Foundation,
  * no part of this software, including this file, may be copied, modified,
  * propagated, or distributed except according to the terms contained in the
  * LICENSE file.
@@ -2750,12 +2750,12 @@ module.exports = {
 
 },{"../constants.js":4,"../time/slots.js":5,"./crypto.js":6}],18:[function(require,module,exports){
 /*
- * Copyright © 2017 Lisk Foundation
+ * Copyright © 2017 Onz Coin Foundation
  *
  * See the LICENSE file at the top-level directory of this distribution
  * for licensing information.
  *
- * Unless otherwise agreed in a custom licensing agreement with the Lisk Foundation,
+ * Unless otherwise agreed in a custom licensing agreement with the Onz Coin Foundation,
  * no part of this software, including this file, may be copied, modified,
  * propagated, or distributed except according to the terms contained in the
  * LICENSE file.
@@ -25506,7 +25506,7 @@ module.exports={
         "spec": ">=6.0.0 <7.0.0",
         "type": "range"
       },
-      "/Users/tobias/GitHub/lisk-js/node_modules/browserify-sign"
+      "/Users/tobias/GitHub/onz-js/node_modules/browserify-sign"
     ]
   ],
   "_from": "elliptic@>=6.0.0 <7.0.0",
@@ -25541,7 +25541,7 @@ module.exports={
   "_shasum": "cac9af8762c85836187003c8dfe193e5e2eae5df",
   "_shrinkwrap": null,
   "_spec": "elliptic@^6.0.0",
-  "_where": "/Users/tobias/GitHub/lisk-js/node_modules/browserify-sign",
+  "_where": "/Users/tobias/GitHub/onz-js/node_modules/browserify-sign",
   "author": {
     "name": "Fedor Indutny",
     "email": "fedor@indutny.com"

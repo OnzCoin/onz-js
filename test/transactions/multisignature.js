@@ -1,12 +1,12 @@
 if (typeof module !== 'undefined' && module.exports) {
 	var slots = require('../../lib/time/slots');
 	var common = require('../common');
-	var lisk = common.lisk;
+	var onz = common.onz;
 }
 
 describe('multisignature.js', function () {
 
-	var multisignature = lisk.multisignature;
+	var multisignature = onz.multisignature;
 
 	it('should be ok', function () {
 		(multisignature).should.be.ok;
@@ -128,7 +128,7 @@ describe('multisignature.js', function () {
 	describe('#signTransaction', function () {
 
 		var secret = '123';
-		var transaction = lisk.transaction.createTransaction('58191285901858109L', 1000, 'secret');
+		var transaction = onz.transaction.createTransaction('58191285901858109L', 1000, 'secret');
 		var signTransaction = multisignature.signTransaction(transaction, secret);
 
 		it('should return an object', function () {
@@ -150,7 +150,7 @@ describe('multisignature.js', function () {
 		var secret = 'privateSecret';
 		var secondSecret = 'privateSecondSecret';
 		var requesterPublicKey = 'abc123';
-		var msigTransaction = lisk.multisignature.createTransaction(recipientId, amount, secret, secondSecret, requesterPublicKey);
+		var msigTransaction = onz.multisignature.createTransaction(recipientId, amount, secret, secondSecret, requesterPublicKey);
 
 		it('should create a multisignature transaction', function () {
 
@@ -171,8 +171,8 @@ describe('multisignature.js', function () {
 
 		it('should create a multisignature transaction without requesterPublicKey and secondSecret', function () {
 
-			var msigTransaction2 = lisk.multisignature.createTransaction(recipientId, amount, secret);
-			var pubKey = lisk.crypto.getPrivateAndPublicKeyFromSecret(secret).publicKey;
+			var msigTransaction2 = onz.multisignature.createTransaction(recipientId, amount, secret);
+			var pubKey = onz.crypto.getPrivateAndPublicKeyFromSecret(secret).publicKey;
 
 			(msigTransaction2.requesterPublicKey).should.be.equal(pubKey);
 		});

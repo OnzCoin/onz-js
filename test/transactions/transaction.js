@@ -2,12 +2,12 @@
 if (typeof module !== 'undefined' && module.exports) {
 	var slots = require('../../lib/time/slots');
 	var common = require('../common');
-	var lisk = common.lisk;
+	var onz = common.onz;
 }
 
 describe('transaction.js', function () {
 
-	var transaction = lisk.transaction;
+	var transaction = onz.transaction;
 
 	it('should be object', function () {
 		(transaction).should.be.type('object');
@@ -121,13 +121,13 @@ describe('transaction.js', function () {
 			});
 
 			it('should be signed correctly', function () {
-				var result = lisk.crypto.verify(trs);
+				var result = onz.crypto.verify(trs);
 				(result).should.be.ok;
 			});
 
 			it('should not be signed correctly now', function () {
 				trs.amount = 10000;
-				var result = lisk.crypto.verify(trs);
+				var result = onz.crypto.verify(trs);
 				(result).should.be.not.ok;
 			});
 
@@ -140,7 +140,7 @@ describe('transaction.js', function () {
 		var createTransaction = transaction.createTransaction;
 		var trs = null;
 		var secondSecret = 'second secret';
-		var keys = lisk.crypto.getKeys(secondSecret);
+		var keys = onz.crypto.getKeys(secondSecret);
 
 		it('should be a function', function () {
 			(createTransaction).should.be.type('function');
@@ -222,24 +222,24 @@ describe('transaction.js', function () {
 			});
 
 			it('should be signed correctly', function () {
-				var result = lisk.crypto.verify(trs);
+				var result = onz.crypto.verify(trs);
 				(result).should.be.ok;
 			});
 
 			it('should be second signed correctly', function () {
-				var result = lisk.crypto.verifySecondSignature(trs, keys.publicKey);
+				var result = onz.crypto.verifySecondSignature(trs, keys.publicKey);
 				(result).should.be.ok;
 			});
 
 			it('should not be signed correctly now', function () {
 				trs.amount = 10000;
-				var result = lisk.crypto.verify(trs);
+				var result = onz.crypto.verify(trs);
 				(result).should.be.not.ok;
 			});
 
 			it('should not be second signed correctly now', function () {
 				trs.amount = 10000;
-				var result = lisk.crypto.verifySecondSignature(trs, keys.publicKey);
+				var result = onz.crypto.verifySecondSignature(trs, keys.publicKey);
 				(result).should.be.not.ok;
 			});
 

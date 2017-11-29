@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Using Lisk-JS</title>
+    <title>Using Onz-JS</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -20,7 +20,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.html"><span><img width="25" height="25" src="lisk.png" alt="Lisk" /></span> lisk-js</a>
+            <a class="navbar-brand" href="../index.html"><span><img width="25" height="25" src="onz.png" alt="Onz" /></span> onz-js</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -38,7 +38,7 @@
             <!--
             <h1>API</h1>
 
-            <p>The lisk-js package allows you to use the cryptography, several nodes or the API of Lisk.</p>
+            <p>The onz-js package allows you to use the cryptography, several nodes or the API of Onz.</p>
             -->
             <div class="col-md-2" id="listGroupNav" style="overflow-y:auto;">
                 <div class="list-group custom-collapse" id="api_nav" style="overflow-y: scroll; position: fixed; left: 5%; top: 120px;width:300px!important;">
@@ -143,33 +143,33 @@
 
                 <h3 id="settings">Settings</h3>
 
-                <p>Numerous settings are available when initialising the core API via Lisk-JS. Please see the examples below.</p>
-                <p>The provision of settings is optional, therefore initialising without any arguments <code>var LSK = lisk.api();</code> yields the defaults.</p>
+                <p>Numerous settings are available when initialising the core API via Onz-JS. Please see the examples below.</p>
+                <p>The provision of settings is optional, therefore initialising without any arguments <code>var ONZ = onz.api();</code> yields the defaults.</p>
 
                 <div class="panel panel-default" id="settings_example_1">
                     <div class="panel-body">
                         <div class="rows">
                             <div class="col-md-12">
-                                <h3>Example 1 <small>Random node, testnet with port 7000</small></h3>
+                                <h3>Example 1 <small>Random node, testnet with port 10998</small></h3>
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
 var options = {
     ssl: false, // Default false. Set to true to enable the https instead of http protocol.
     node: '', // Default randomNode. Insert a node without http or https protocol. Use ssl option in order to set http or https.
-    randomPeer: true, // Default true. Lisk-js automatically connects to a random peer to get lisk blockchain information. Set to false to disable this behaviour.
+    randomPeer: true, // Default true. Onz-js automatically connects to a random peer to get onz blockchain information. Set to false to disable this behaviour.
     testnet: true, // Default false. Set to true to use the testnet. Set to false to use the mainnet.
-    port: '7000', // Default 8000. Enter the port as the protocol http(s)://node:port - can be any string.
+    port: '10998', // Default 11000. Enter the port as the protocol http(s)://node:port - can be any string.
     bannedPeers: [], // Default empty. Array of peers that should not be connected to. Without http(s) or port.
 };
 
-var LSK = lisk.api(options);
+var ONZ = onz.api(options);
                                         </code>
                                     </pre>
                                 </figure>
                             </div>
                             <div class="col-md-12" id="settings_example_2">
-                                <h3>Example 2 <small>Restricted to localhost, port 8000, no SSL</small></h3>
+                                <h3>Example 2 <small>Restricted to localhost, port 11000, no SSL</small></h3>
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
@@ -178,12 +178,12 @@ var options = {
     node: 'localhost', // write node without http:// or port
     randomPeer: false, // default true
     testnet: false, // default false
-    port: '8000', // default 8000
+    port: '11000', // default 11000
     bannedPeers: [], // default empty
 
 };
 
-var LSK = lisk.api(options);
+var ONZ = onz.api(options);
                                         </code>
                                     </pre>
                                 </figure>
@@ -204,7 +204,7 @@ var LSK = lisk.api(options);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-lisk.api().getAccount(accountAddress, callback);
+onz.api().getAccount(accountAddress, callback);
                                         </code>
                                     </pre>
                                 </figure>
@@ -223,7 +223,7 @@ lisk.api().getAccount(accountAddress, callback);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-lisk.api().listActiveDelegates(5, callback);
+onz.api().listActiveDelegates(5, callback);
                                         </code>
                                     </pre>
                                 </figure>
@@ -242,7 +242,7 @@ lisk.api().listActiveDelegates(5, callback);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-lisk.api().listStandbyDelegates(6, callback);
+onz.api().listStandbyDelegates(6, callback);
                                         </code>
                                     </pre>
                                 </figure>
@@ -261,7 +261,7 @@ lisk.api().listStandbyDelegates(6, callback);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-lisk.api().searchDelegateByUsername('username', callback);
+onz.api().searchDelegateByUsername('username', callback);
                                         </code>
                                     </pre>
                                 </figure>
@@ -280,7 +280,7 @@ lisk.api().searchDelegateByUsername('username', callback);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-lisk.api().getBlock(blockId, callback);
+onz.api().getBlock(blockId, callback);
                                         </code>
                                     </pre>
                                 </figure>
@@ -299,7 +299,7 @@ lisk.api().getBlock(blockId, callback);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-lisk.api().listBlocks(amount, callback);
+onz.api().listBlocks(amount, callback);
                                         </code>
                                     </pre>
                                 </figure>
@@ -318,7 +318,7 @@ lisk.api().listBlocks(amount, callback);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-lisk.api().listForgedBlocks(publicKey, callback);
+onz.api().listForgedBlocks(publicKey, callback);
                                         </code>
                                     </pre>
                                 </figure>
@@ -337,7 +337,7 @@ lisk.api().listForgedBlocks(publicKey, callback);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-lisk.api().getTransaction(transactionId, callback);
+onz.api().getTransaction(transactionId, callback);
                                         </code>
                                     </pre>
                                 </figure>
@@ -356,11 +356,11 @@ lisk.api().getTransaction(transactionId, callback);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-lisk.api().listTransactions(address, limit, offset, callback);
+onz.api().listTransactions(address, limit, offset, callback);
                                         </code>
                                     </pre>
                                 </figure>
-                                <p><b>Address:</b> The Lisk address for recipient and sender of the transactions.</p>
+                                <p><b>Address:</b> The Onz address for recipient and sender of the transactions.</p>
                                 <p><b>Limit:</b> The number of transactions to retrieve. Minimum: 1, Maximum: 1000.</p>
                                 <p><b>Offset:</b> The number of records to offset the query from, e.g. a given offset of 10 excludes the first 10 records from the yielded results.</p>
                             </div>
@@ -378,7 +378,7 @@ lisk.api().listTransactions(address, limit, offset, callback);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-lisk.api().listVotes(address, callback);
+onz.api().listVotes(address, callback);
                                         </code>
                                     </pre>
                                 </figure>
@@ -397,7 +397,7 @@ lisk.api().listVotes(address, callback);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-lisk.api().listVoters(publicKey, callback);
+onz.api().listVoters(publicKey, callback);
                                         </code>
                                     </pre>
                                 </figure>
@@ -416,7 +416,7 @@ lisk.api().listVoters(publicKey, callback);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-lisk.api().listMultisignatureTransactions(callback);
+onz.api().listMultisignatureTransactions(callback);
                                         </code>
                                     </pre>
                                 </figure>
@@ -435,7 +435,7 @@ lisk.api().listMultisignatureTransactions(callback);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-lisk.api().getMultisignatureTransaction('transactionID', callback);
+onz.api().getMultisignatureTransaction('transactionID', callback);
                                         </code>
                                     </pre>
                                 </figure>
@@ -450,7 +450,7 @@ lisk.api().getMultisignatureTransaction('transactionID', callback);
 
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <p><code>sendRequest</code> gives full access to the Lisk core API. It accepts any valid endpoint and parameters.</p>
+                        <p><code>sendRequest</code> gives full access to the Onz core API. It accepts any valid endpoint and parameters.</p>
 
                         <div class="rows">
                             <div class="col-md-12">
@@ -459,7 +459,7 @@ lisk.api().getMultisignatureTransaction('transactionID', callback);
                                     <pre>
                                         <code class="language-html" data-lang="html">
 
-var liskBlockheight = lisk.api().sendRequest('blocks/getHeight', function (data) {
+var onzBlockheight = onz.api().sendRequest('blocks/getHeight', function (data) {
     var str = JSON.stringify(data);
     document.getElementById('output').innerHTML = str;
 });
@@ -473,7 +473,7 @@ var liskBlockheight = lisk.api().sendRequest('blocks/getHeight', function (data)
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var liskNewAccount = lisk.api().sendRequest('accounts/open', { secret: 'my secret passphrase' }, function (data) {
+var onzNewAccount = onz.api().sendRequest('accounts/open', { secret: 'my secret passphrase' }, function (data) {
     var str = JSON.stringify(data);
     document.getElementById('output').innerHTML = str;
 });
@@ -496,7 +496,7 @@ var liskNewAccount = lisk.api().sendRequest('accounts/open', { secret: 'my secre
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var LSK = lisk.api().getNethash();
+var ONZ = onz.api().getNethash();
                                         </code>
                                     </pre>
                                 </figure>
@@ -506,9 +506,9 @@ var LSK = lisk.api().getNethash();
                                         <code class="language-html" data-lang="html">
 {
     'Content-Type': 'application/json',
-    'nethash': 'ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511',
-    'broadhash': 'ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511',
-    'os': 'lisk-js-api',
+    'nethash': '053ef5853fc3d1e73cc55186c789f69be14c14d48bf748b4c9a5775c8de1056b',
+    'broadhash': '053ef5853fc3d1e73cc55186c789f69be14c14d48bf748b4c9a5775c8de1056b',
+    'os': 'onz-js-api',
     'version': '1.0.0',
     'minVersion': '>=0.5.0',
     'port': this.port
@@ -531,11 +531,11 @@ var LSK = lisk.api().getNethash();
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var LSK = lisk.api().setNode('mynode.com');
+var ONZ = onz.api().setNode('mynode.com');
                                         </code>
                                     </pre>
                                 </figure>
-                                <p>Use <code>LSK.setNode();</code> without any arguments to automatically choose a new random node.</p>
+                                <p>Use <code>ONZ.setNode();</code> without any arguments to automatically choose a new random node.</p>
                             </div>
                         </div>
                     </div>
@@ -551,7 +551,7 @@ var LSK = lisk.api().setNode('mynode.com');
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var LSK = lisk.api().listPeers();
+var ONZ = onz.api().listPeers();
                                         </code>
                                     </pre>
                                 </figure>
@@ -580,7 +580,7 @@ var LSK = lisk.api().listPeers();
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var LSK = lisk.api().setSSL(true); // or false
+var ONZ = onz.api().setSSL(true); // or false
                                         </code>
                                     </pre>
                                 </figure>
@@ -599,7 +599,7 @@ var LSK = lisk.api().setSSL(true); // or false
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var LSK = lisk.api().setTestnet(true); // or false
+var ONZ = onz.api().setTestnet(true); // or false
                                         </code>
                                     </pre>
                                 </figure>
@@ -620,7 +620,7 @@ var LSK = lisk.api().setTestnet(true); // or false
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var keys = lisk.crypto.getKeys('secret');
+var keys = onz.crypto.getKeys('secret');
                                         </code>
                                     </pre>
                                 </figure>
@@ -646,11 +646,11 @@ var keys = lisk.crypto.getKeys('secret');
                     <div class="panel-body">
                         <div class="rows">
                             <div class="col-md-12">
-                                <h3>Example <small>Get the LSK address from a given public key</small></h3>
+                                <h3>Example <small>Get the ONZ address from a given public key</small></h3>
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var keys = lisk.crypto.getAddress('5d036a858ce89f844491762eb89e2bfbd50a4a0a0da658e4b2628b25b117ae09');
+var keys = onz.crypto.getAddress('5d036a858ce89f844491762eb89e2bfbd50a4a0a0da658e4b2628b25b117ae09');
                                         </code>
                                     </pre>
                                 </figure>
@@ -658,7 +658,7 @@ var keys = lisk.crypto.getAddress('5d036a858ce89f844491762eb89e2bfbd50a4a0a0da65
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-18160565574430594874L
+18160565574430594874Z
                                         </code>
                                     </pre>
                                 </figure>
@@ -677,7 +677,7 @@ var keys = lisk.crypto.getAddress('5d036a858ce89f844491762eb89e2bfbd50a4a0a0da65
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var transactionBytes = lisk.crypto.getBytes(transactionObject);
+var transactionBytes = onz.crypto.getBytes(transactionObject);
                                         </code>
                                     </pre>
                                 </figure>
@@ -696,7 +696,7 @@ var transactionBytes = lisk.crypto.getBytes(transactionObject);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var transactionHash = lisk.crypto.getHash(transactionObject);
+var transactionHash = onz.crypto.getHash(transactionObject);
                                         </code>
                                     </pre>
                                 </figure>
@@ -715,7 +715,7 @@ var transactionHash = lisk.crypto.getHash(transactionObject);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var transactionId = lisk.crypto.getId(transactionObject);
+var transactionId = onz.crypto.getId(transactionObject);
                                         </code>
                                     </pre>
                                 </figure>
@@ -734,7 +734,7 @@ var transactionId = lisk.crypto.getId(transactionObject);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var transactionFee = lisk.crypto.getFee(transactionObject);
+var transactionFee = onz.crypto.getFee(transactionObject);
                                         </code>
                                     </pre>
                                 </figure>
@@ -753,7 +753,7 @@ var transactionFee = lisk.crypto.getFee(transactionObject);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var transactionSignature = lisk.crypto.sign(transactionObject, keypair);
+var transactionSignature = onz.crypto.sign(transactionObject, keypair);
                                         </code>
                                     </pre>
                                 </figure>
@@ -772,7 +772,7 @@ var transactionSignature = lisk.crypto.sign(transactionObject, keypair);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var transactionSignature = lisk.crypto.secondSign(transactionObject, keypair);
+var transactionSignature = onz.crypto.secondSign(transactionObject, keypair);
                                         </code>
                                     </pre>
                                 </figure>
@@ -791,7 +791,7 @@ var transactionSignature = lisk.crypto.secondSign(transactionObject, keypair);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var transactionSignature = lisk.crypto.multiSign(transactionObject, keypair);
+var transactionSignature = onz.crypto.multiSign(transactionObject, keypair);
                                         </code>
                                     </pre>
                                 </figure>
@@ -810,7 +810,7 @@ var transactionSignature = lisk.crypto.multiSign(transactionObject, keypair);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var keypair = lisk.crypto.getKeys(secret);
+var keypair = onz.crypto.getKeys(secret);
                                         </code>
                                     </pre>
                                 </figure>
@@ -829,7 +829,7 @@ var keypair = lisk.crypto.getKeys(secret);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var verification = lisk.crypto.verify(transactionObject);
+var verification = onz.crypto.verify(transactionObject);
                                         </code>
                                     </pre>
                                 </figure>
@@ -848,7 +848,7 @@ var verification = lisk.crypto.verify(transactionObject);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var verification = lisk.crypto.verifySecondSignature(transactionObject);
+var verification = onz.crypto.verifySecondSignature(transactionObject);
                                         </code>
                                     </pre>
                                 </figure>
@@ -863,11 +863,11 @@ var verification = lisk.crypto.verifySecondSignature(transactionObject);
                     <div class="panel-body">
                         <div class="rows">
                             <div class="col-md-12">
-                                <h3>Example <small>Convert a given floating point LSK amount to an integer representation</small></h3>
+                                <h3>Example <small>Convert a given floating point ONZ amount to an integer representation</small></h3>
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var bigAmount = lisk.crypto.fixedPoint(amount);
+var bigAmount = onz.crypto.fixedPoint(amount);
                                         </code>
                                     </pre>
                                 </figure>
@@ -886,7 +886,7 @@ var bigAmount = lisk.crypto.fixedPoint(amount);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var hexString = lisk.crypto.bufferToHex(buffer);
+var hexString = onz.crypto.bufferToHex(buffer);
                                         </code>
                                     </pre>
                                 </figure>
@@ -905,7 +905,7 @@ var hexString = lisk.crypto.bufferToHex(buffer);
                                 <figure>
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var buffer = lisk.crypto.hexToBuffer(hexString);
+var buffer = onz.crypto.hexToBuffer(hexString);
                                         </code>
                                     </pre>
                                 </figure>
@@ -925,7 +925,7 @@ var buffer = lisk.crypto.hexToBuffer(hexString);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var rawId = lisk.crypto.useFirstEightBufferEntriesReversed(buffer);
+var rawId = onz.crypto.useFirstEightBufferEntriesReversed(buffer);
                                         </code>
                                     </pre>
                                 </figure>
@@ -944,7 +944,7 @@ var rawId = lisk.crypto.useFirstEightBufferEntriesReversed(buffer);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var messageSignature = lisk.crypto.signMessageWithSecret(message, secret);
+var messageSignature = onz.crypto.signMessageWithSecret(message, secret);
                                         </code>
                                     </pre>
                                 </figure>
@@ -963,19 +963,19 @@ var messageSignature = lisk.crypto.signMessageWithSecret(message, secret);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var printSignedMessage = lisk.crypto.printSignedMessage(message, signedMessage, publicKey);
+var printSignedMessage = onz.crypto.printSignedMessage(message, signedMessage, publicKey);
                                         </code>
                                     </pre>
                                 </figure>
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
------BEGIN LISK SIGNED MESSAGE-----
+-----BEGIN ONZ SIGNED MESSAGE-----
 &lt;message&gt;
 -----BEGIN SIGNATURE-----
 &lt;publicKey&gt;
 &lt;signature&gt;
------END LISK SIGNED MESSAGE-----
+-----END ONZ SIGNED MESSAGE-----
                                         </code>
                                     </pre>
                                 </figure>
@@ -996,7 +996,7 @@ var printSignedMessage = lisk.crypto.printSignedMessage(message, signedMessage, 
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var printSignedMessage = lisk.crypto.printSignedMessage(message, secret);
+var printSignedMessage = onz.crypto.printSignedMessage(message, secret);
                                         </code>
                                     </pre>
                                 </figure>
@@ -1016,7 +1016,7 @@ var printSignedMessage = lisk.crypto.printSignedMessage(message, secret);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var verifySignedMessage = lisk.crypto.verifyMessageWithPublicKey(signedMessage, publicKey);
+var verifySignedMessage = onz.crypto.verifyMessageWithPublicKey(signedMessage, publicKey);
                                         </code>
                                     </pre>
                                 </figure>
@@ -1036,7 +1036,7 @@ var verifySignedMessage = lisk.crypto.verifyMessageWithPublicKey(signedMessage, 
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var encrypted = lisk.crypto.encryptMessageWithSecret(message, secret, recipientPublicKey);
+var encrypted = onz.crypto.encryptMessageWithSecret(message, secret, recipientPublicKey);
                                         </code>
                                     </pre>
                                 </figure>
@@ -1068,7 +1068,7 @@ var encrypted = lisk.crypto.encryptMessageWithSecret(message, secret, recipientP
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var encrypted = lisk.crypto.decryptMessageWithSecret(encryptedMessage, nonce, secret, senderPublicKey);
+var encrypted = onz.crypto.decryptMessageWithSecret(encryptedMessage, nonce, secret, senderPublicKey);
                                         </code>
                                     </pre>
                                 </figure>
@@ -1096,7 +1096,7 @@ Original Message
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var keypair = lisk.crypto.getPrivateAndPublicKeyFromSecret(secret);
+var keypair = onz.crypto.getPrivateAndPublicKeyFromSecret(secret);
                                         </code>
                                     </pre>
                                 </figure>
@@ -1126,7 +1126,7 @@ var keypair = lisk.crypto.getPrivateAndPublicKeyFromSecret(secret);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var keypairBytes = lisk.crypto.getRawPrivateAndPublicKeyFromSecret(secret);
+var keypairBytes = onz.crypto.getRawPrivateAndPublicKeyFromSecret(secret);
                                         </code>
                                     </pre>
                                 </figure>
@@ -1156,7 +1156,7 @@ var keypairBytes = lisk.crypto.getRawPrivateAndPublicKeyFromSecret(secret);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var address = lisk.crypto.getAddressFromPublicKey(publicKeyHex);
+var address = onz.crypto.getAddressFromPublicKey(publicKeyHex);
                                         </code>
                                     </pre>
                                 </figure>
@@ -1175,7 +1175,7 @@ var address = lisk.crypto.getAddressFromPublicKey(publicKeyHex);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var sha256Hash = lisk.crypto.getSha256Hash(string);
+var sha256Hash = onz.crypto.getSha256Hash(string);
                                         </code>
                                     </pre>
                                 </figure>
@@ -1197,7 +1197,7 @@ var sha256Hash = lisk.crypto.getSha256Hash(string);
                                     <pre>
                                         <code class="language-html" data-lang="html">
 var amount      = 1000 * Math.pow(10, 8); // 100000000000
-var transaction = lisk.transaction.createTransaction('1859190791819301L', amount, 'passphrase', 'secondPassphrase');
+var transaction = onz.transaction.createTransaction('1859190791819301L', amount, 'passphrase', 'secondPassphrase');
                                         </code>
                                     </pre>
                                 </figure>
@@ -1209,7 +1209,7 @@ var transaction = lisk.transaction.createTransaction('1859190791819301L', amount
     type: 0, // Transaction type. 0 = Normal transaction.
     amount: 100000000000, // The amount to send expressed as an integer value.
     asset: {}, // Transaction asset, dependent on tx type.
-    fee: 100000000, // 0.1 LSK expressed as an integer value.
+    fee: 100000000, // 0.1 ONZ expressed as an integer value.
     id: '500224999259823996', // Transaction ID.
     recipientId: '1859190791819301L', // Recipient ID.
     senderPublicKey: '56e106a1d4a53dbe22cac52fefd8fc4123cfb4ee482f8f25a4fc72eb459b38a5', // Sender's public key.
@@ -1235,7 +1235,7 @@ var transaction = lisk.transaction.createTransaction('1859190791819301L', amount
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var transaction = lisk.vote.createVote('secret', ['+58199578191950019299181920120128129'], 'secondSecret');
+var transaction = onz.vote.createVote('secret', ['+58199578191950019299181920120128129'], 'secondSecret');
                                         </code>
                                     </pre>
                                 </figure>
@@ -1256,15 +1256,15 @@ var transaction = lisk.vote.createVote('secret', ['+5819957819195001929918192012
                                         <code class="language-html" data-lang="html">
 var options = {
     category: 0,
-    name: 'Lisk Guestbook',
-    description: 'The official Lisk guestbook',
+    name: 'Onz Guestbook',
+    description: 'The official Onz guestbook',
     tags: 'guestbook message sidechain',
     type: 0,
     link: 'https://github.com/MaxKK/guestbookDapp/archive/master.zip',
     icon: 'https://raw.githubusercontent.com/MaxKK/guestbookDapp/master/icon.png'
 };
 
-var transaction = lisk.dapp.createDapp('secret', 'secondSecret', options);
+var transaction = onz.dapp.createDapp('secret', 'secondSecret', options);
                                         </code>
                                     </pre>
                                 </figure>
@@ -1283,7 +1283,7 @@ var transaction = lisk.dapp.createDapp('secret', 'secondSecret', options);
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var transaction = lisk.delegate.createDelegate('secret', 'username', 'secondSecret');
+var transaction = onz.delegate.createDelegate('secret', 'username', 'secondSecret');
                                         </code>
                                     </pre>
                                 </figure>
@@ -1302,7 +1302,7 @@ var transaction = lisk.delegate.createDelegate('secret', 'username', 'secondSecr
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var transaction = lisk.signature.createTransaction('secret', 'secondSecret');
+var transaction = onz.signature.createTransaction('secret', 'secondSecret');
                                         </code>
                                     </pre>
                                 </figure>
@@ -1326,7 +1326,7 @@ var secondSecret = '';
 var keysgroup = ['+publicKey1', '+publicKey2']; // Add publicKeys for multisignature.
 var lifetime = 20; // Time in hours until transactions will be invalid.
 var min = 2; // Minimum signatures so that a transaction is valid.
-var transaction = lisk.multisignature.createMultisignature(secret, secondSecret, keysgroup, lifetime, min);
+var transaction = onz.multisignature.createMultisignature(secret, secondSecret, keysgroup, lifetime, min);
                                         </code>
                                     </pre>
                                 </figure>
@@ -1345,7 +1345,7 @@ var transaction = lisk.multisignature.createMultisignature(secret, secondSecret,
                                 <figure class="highlight">
                                     <pre>
                                         <code class="language-html" data-lang="html">
-var signature = lisk.multisignature.signTransaction(transaction, secret);
+var signature = onz.multisignature.signTransaction(transaction, secret);
                                         </code>
                                     </pre>
                                 </figure>
@@ -1362,7 +1362,7 @@ var signature = lisk.multisignature.signTransaction(transaction, secret);
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-<script src="https://gitcdn.xyz/repo/LiskHQ/lisk-js/development/dist/lisk-js.js"></script>
+<script src="https://gitcdn.xyz/repo/OnzCoin/onz-js/development/dist/onz-js.js"></script>
 
 <script>
 'use strict';

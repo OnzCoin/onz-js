@@ -25,8 +25,8 @@
     "mocha": true
   },
   "globals": {
-    "lisk": true,
-    "LiskAPI": true,
+    "onz": true,
+    "OnzAPI": true,
     "naclFactory": true,
     "naclInstance": true,
     "Promise": true,

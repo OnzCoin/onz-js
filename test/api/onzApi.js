@@ -1,46 +1,46 @@
 if (typeof module !== 'undefined' && module.exports) {
 	var common = require('../common');
-	var lisk = common.lisk;
+	var onz = common.onz;
 	var sinon = common.sinon;
 	process.env.NODE_ENV = 'test';
 }
 
-describe('Lisk.api()', function () {
+describe('Onz.api()', function () {
 
-	var LSK = lisk.api();
+	var ONZ = onz.api();
 
-	describe('lisk.api()', function () {
+	describe('onz.api()', function () {
 
-		it('should create a new instance when using lisk.api()', function () {
-			(LSK).should.be.ok();
+		it('should create a new instance when using onz.api()', function () {
+			(ONZ).should.be.ok();
 		});
 
-		it('new lisk.api() should be Object', function () {
-			(LSK).should.be.type('object');
+		it('new onz.api() should be Object', function () {
+			(ONZ).should.be.type('object');
 		});
 
 		it('should use testnet peer for testnet settings', function () {
-			var TESTLSK = lisk.api({ testnet: true });
+			var TESTONZ = onz.api({ testnet: true });
 
-			(TESTLSK.port).should.be.equal(7000);
-			(TESTLSK.testnet).should.be.equal(true);
+			(TESTONZ.port).should.be.equal(10998);
+			(TESTONZ.testnet).should.be.equal(true);
 		});
 
 	});
 
 	describe('#listPeers', function () {
 		it('should give a set of the peers', function () {
-			(LSK.listPeers()).should.be.ok;
-			(LSK.listPeers()).should.be.type.Object;
-			(LSK.listPeers().official.length).should.be.equal(8);
-			(LSK.listPeers().testnet.length).should.be.equal(1);
+			(ONZ.listPeers()).should.be.ok;
+			(ONZ.listPeers()).should.be.type.Object;
+			(ONZ.listPeers().official.length).should.be.equal(8);
+			(ONZ.listPeers().testnet.length).should.be.equal(1);
 		});
 	});
 
 	describe('.currentPeer', function () {
 
 		it('currentPeer should be set by default', function () {
-			(LSK.currentPeer).should.be.ok;
+			(ONZ.currentPeer).should.be.ok;
 		});
 	});
 
@@ -49,30 +49,30 @@ describe('Lisk.api()', function () {
 		it('Nethash should be hardcoded variables', function () {
 			var NetHash = {
 				'Content-Type': 'application/json',
-				'nethash': 'ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511',
-				'broadhash': 'ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511',
-				'os': 'lisk-js-api',
+				'nethash': '053ef5853fc3d1e73cc55186c789f69be14c14d48bf748b4c9a5775c8de1056b',
+				'broadhash': '053ef5853fc3d1e73cc55186c789f69be14c14d48bf748b4c9a5775c8de1056b',
+				'os': 'onz-js-api',
 				'version': '1.0.0',
 				'minVersion': '>=0.5.0',
-				'port': 8000
+				'port': 11000
 			};
-			(LSK.getNethash()).should.eql(NetHash);
+			(ONZ.getNethash()).should.eql(NetHash);
 		});
 
 		it('should give corret Nethash for testnet', function () {
-			LSK.setTestnet(true);
+			ONZ.setTestnet(true);
 
 			var NetHash = {
 				'Content-Type': 'application/json',
-				'nethash': 'da3ed6a45429278bac2666961289ca17ad86595d33b31037615d4b8e8f158bba',
-				'broadhash': 'da3ed6a45429278bac2666961289ca17ad86595d33b31037615d4b8e8f158bba',
-				'os': 'lisk-js-api',
+				'nethash': 'c6118f371269a8f3c5e26ce2d24fd168131ea356e22bfe44600a6b3122b1dabc',
+				'broadhash': 'c6118f371269a8f3c5e26ce2d24fd168131ea356e22bfe44600a6b3122b1dabc',
+				'os': 'onz-js-api',
 				'version': '1.0.0',
 				'minVersion': '>=0.5.0',
-				'port': 7000
+				'port': 10998
 			};
 
-			(LSK.getNethash()).should.eql(NetHash);
+			(ONZ.getNethash()).should.eql(NetHash);
 		});
 
 
@@ -80,32 +80,32 @@ describe('Lisk.api()', function () {
 			var NetHash = {
 				'Content-Type': 'application/json',
 				'nethash': '123',
-				'broadhash': 'ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511',
-				'os': 'lisk-js-api',
+				'broadhash': '053ef5853fc3d1e73cc55186c789f69be14c14d48bf748b4c9a5775c8de1056b',
+				'os': 'onz-js-api',
 				'version': '0.0.0a',
 				'minVersion': '>=0.5.0',
-				'port': 8000
+				'port': 11000
 			};
-			var LSKNethash = lisk.api({ nethash: '123' });
+			var ONZNethash = onz.api({ nethash: '123' });
 
-			(LSKNethash.nethash).should.eql(NetHash);
+			(ONZNethash.nethash).should.eql(NetHash);
 		});
 	});
 
 	describe('#setTestnet', function () {
 
 		it('should set to testnet', function () {
-			var LISK = lisk.api();
-			LISK.setTestnet(true);
+			var ONZ = onz.api();
+			ONZ.setTestnet(true);
 
-			(LISK.testnet).should.be.true;
+			(ONZ.testnet).should.be.true;
 		});
 
 		it('should set to mainnet', function () {
-			var LISK = lisk.api();
-			LISK.setTestnet(false);
+			var ONZ = onz.api();
+			ONZ.setTestnet(false);
 
-			(LISK.testnet).should.be.false;
+			(ONZ.testnet).should.be.false;
 		});
 	});
 
@@ -113,73 +113,73 @@ describe('Lisk.api()', function () {
 
 		it('should be able to set my own node', function () {
 			var myOwnNode = 'myOwnNode.com';
-			LSK.setNode(myOwnNode);
+			ONZ.setNode(myOwnNode);
 
-			(LSK.currentPeer).should.be.equal(myOwnNode);
+			(ONZ.currentPeer).should.be.equal(myOwnNode);
 		});
 
 		it('should select a node when not explicitly set', function () {
-			LSK.setNode();
+			ONZ.setNode();
 
-			(LSK.currentPeer).should.be.ok();
+			(ONZ.currentPeer).should.be.ok();
 		});
 	});
 
 	describe('#selectNode', function () {
 
 		it('should return the node from initial settings when set', function () {
-			var LiskUrlInit = lisk.api({ port: 7000, node: 'localhost', ssl: true, randomPeer: false });
+			var OnzUrlInit = onz.api({ port: 10998, node: 'localhost', ssl: true, randomPeer: false });
 
-			(LiskUrlInit.selectNode()).should.be.equal('localhost');
+			(OnzUrlInit.selectNode()).should.be.equal('localhost');
 		});
 	});
 
 	describe('#getRandomPeer', function () {
 
 		it('should give a random peer', function () {
-			(LSK.getRandomPeer()).should.be.ok();
+			(ONZ.getRandomPeer()).should.be.ok();
 		});
 	});
 
 	describe('#banNode', function () {
 
-		it('should add current node to LSK.bannedPeers', function () {
-			var currentNode = LSK.currentPeer;
-			LSK.banNode();
+		it('should add current node to ONZ.bannedPeers', function () {
+			var currentNode = ONZ.currentPeer;
+			ONZ.banNode();
 
-			(LSK.bannedPeers).should.containEql(currentNode);
+			(ONZ.bannedPeers).should.containEql(currentNode);
 		});
 	});
 
 	describe('#getFullUrl', function () {
 
 		it('should give the full url inclusive port', function () {
-			var LiskUrlInit = lisk.api({ port: 7000, node: 'localhost', ssl: false });
-			var fullUrl = 'http://localhost:7000';
+			var OnzUrlInit = onz.api({ port: 10998, node: 'localhost', ssl: false });
+			var fullUrl = 'http://localhost:10998';
 
-			(LiskUrlInit.getFullUrl()).should.be.equal(fullUrl);
+			(OnzUrlInit.getFullUrl()).should.be.equal(fullUrl);
 		});
 
 		it('should give the full url without port and with SSL', function () {
-			var LiskUrlInit = lisk.api({ port: '', node: 'localhost', ssl: true });
+			var OnzUrlInit = onz.api({ port: '', node: 'localhost', ssl: true });
 			var fullUrl = 'https://localhost';
 
-			(LiskUrlInit.getFullUrl()).should.be.equal(fullUrl);
+			(OnzUrlInit.getFullUrl()).should.be.equal(fullUrl);
 		});
 	});
 
 	describe('#getURLPrefix', function () {
 
 		it('should be http when ssl is false', function () {
-			LSK.setSSL(false);
+			ONZ.setSSL(false);
 
-			(LSK.getURLPrefix()).should.be.equal('http');
+			(ONZ.getURLPrefix()).should.be.equal('http');
 		});
 
 		it('should be https when ssl is true', function () {
-			LSK.setSSL(true);
+			ONZ.setSSL(true);
 
-			(LSK.getURLPrefix()).should.be.equal('https');
+			(ONZ.getURLPrefix()).should.be.equal('https');
 		});
 	});
 
@@ -198,7 +198,7 @@ describe('Lisk.api()', function () {
 		});
 
 		it('should be equal after trim an Object in keys and value', function () {
-			var trimIt = LSK.trimObj(untrimmedObj);
+			var trimIt = ONZ.trimObj(untrimmedObj);
 
 			(trimIt).should.be.eql(trimmedObj);
 		});
@@ -208,7 +208,7 @@ describe('Lisk.api()', function () {
 				'myObj': 2
 			};
 
-			var trimmedObj = LSK.trimObj(obj);
+			var trimmedObj = ONZ.trimObj(obj);
 			(trimmedObj).should.be.ok;
 			(trimmedObj).should.be.eql({ myObj: '2' });
 		});
@@ -222,7 +222,7 @@ describe('Lisk.api()', function () {
 				key: 'my2ndval'
 			};
 
-			var serialised = LSK.toQueryString(myObj);
+			var serialised = ONZ.toQueryString(myObj);
 
 			(serialised).should.be.equal('obj=myval&key=my2ndval');
 		});
@@ -236,7 +236,7 @@ describe('Lisk.api()', function () {
 				key: 'my2ndval '
 			};
 
-			var serialised = LSK.serialiseHttpData(myObj);
+			var serialised = ONZ.serialiseHttpData(myObj);
 
 			(serialised).should.be.equal('?obj=myval&key=my2ndval');
 		});
@@ -247,10 +247,10 @@ describe('Lisk.api()', function () {
 		it('should create correct address and publicKey', function () {
 			var address = {
 				publicKey: 'a4465fd76c16fcc458448076372abf1912cc5b150663a64dffefe550f96feadd',
-				address: '12475940823804898745L'
+				address: '12475940823804898745Z'
 			};
 
-			(LSK.getAddressFromSecret('123')).should.eql(address);
+			(ONZ.getAddressFromSecret('123')).should.eql(address);
 		});
 	});
 
@@ -259,28 +259,28 @@ describe('Lisk.api()', function () {
 		it('should identify GET requests', function () {
 			var requestType = 'api/loader/status';
 			var options = '';
-			var checkRequestAnswer = LSK.checkRequest(requestType, options);
+			var checkRequestAnswer = ONZ.checkRequest(requestType, options);
 
 			(checkRequestAnswer).should.be.ok;
 			(checkRequestAnswer).should.be.equal('GET');
 
 			var requestType = 'api/loader/status/sync';
 			var options = '';
-			var checkRequestAnswer = LSK.checkRequest(requestType, options);
+			var checkRequestAnswer = ONZ.checkRequest(requestType, options);
 
 			(checkRequestAnswer).should.be.ok;
 			(checkRequestAnswer).should.be.equal('GET');
 
 			var requestType = 'api/loader/status/ping';
 			var options = '';
-			var checkRequestAnswer = LSK.checkRequest(requestType, options);
+			var checkRequestAnswer = ONZ.checkRequest(requestType, options);
 
 			(checkRequestAnswer).should.be.ok;
 			(checkRequestAnswer).should.be.equal('GET');
 
 			var requestType = 'api/transactions';
 			var options = {blockId: '123', senderId: '123'};
-			var checkRequestAnswer = LSK.checkRequest(requestType, options);
+			var checkRequestAnswer = ONZ.checkRequest(requestType, options);
 
 			(checkRequestAnswer).should.be.ok;
 			(checkRequestAnswer).should.be.equal('GET');
@@ -289,21 +289,21 @@ describe('Lisk.api()', function () {
 		it('should identify POST requests', function () {
 			var requestType = 'accounts/generatePublicKey';
 			var options = {secret: '123'};
-			var checkRequestAnswer = LSK.checkRequest(requestType, options);
+			var checkRequestAnswer = ONZ.checkRequest(requestType, options);
 
 			(checkRequestAnswer).should.be.ok;
 			(checkRequestAnswer).should.be.equal('POST');
 
 			var requestType = 'accounts/open';
 			var options = {secret: '123'};
-			var checkRequestAnswer = LSK.checkRequest(requestType, options);
+			var checkRequestAnswer = ONZ.checkRequest(requestType, options);
 
 			(checkRequestAnswer).should.be.ok;
 			(checkRequestAnswer).should.be.equal('POST');
 
 			var requestType = 'multisignatures/sign';
 			var options = {secret: '123'};
-			var checkRequestAnswer = LSK.checkRequest(requestType, options);
+			var checkRequestAnswer = ONZ.checkRequest(requestType, options);
 
 			(checkRequestAnswer).should.be.ok;
 			(checkRequestAnswer).should.be.equal('POST');
@@ -312,21 +312,21 @@ describe('Lisk.api()', function () {
 		it('should identify PUT requests', function () {
 			var requestType = 'accounts/delegates';
 			var options = {secret: '123'};
-			var checkRequestAnswer = LSK.checkRequest(requestType, options);
+			var checkRequestAnswer = ONZ.checkRequest(requestType, options);
 
 			(checkRequestAnswer).should.be.ok;
 			(checkRequestAnswer).should.be.equal('PUT');
 
 			var requestType = 'signatures';
 			var options = {secret: '123'};
-			var checkRequestAnswer = LSK.checkRequest(requestType, options);
+			var checkRequestAnswer = ONZ.checkRequest(requestType, options);
 
 			(checkRequestAnswer).should.be.ok;
 			(checkRequestAnswer).should.be.equal('PUT');
 
 			var requestType = 'transactions';
 			var options = {secret: '123'};
-			var checkRequestAnswer = LSK.checkRequest(requestType, options);
+			var checkRequestAnswer = ONZ.checkRequest(requestType, options);
 
 			(checkRequestAnswer).should.be.ok;
 			(checkRequestAnswer).should.be.equal('PUT');
@@ -335,14 +335,14 @@ describe('Lisk.api()', function () {
 		it('should identify NOACTION requests', function () {
 			var requestType = 'delegates/forging/enable';
 			var options = {secret: '123'};
-			var checkRequestAnswer = LSK.checkRequest(requestType, options);
+			var checkRequestAnswer = ONZ.checkRequest(requestType, options);
 
 			(checkRequestAnswer).should.be.ok;
 			(checkRequestAnswer).should.be.equal('NOACTION');
 
 			var requestType = 'dapps/uninstall';
 			var options = {secret: '123'};
-			var checkRequestAnswer = LSK.checkRequest(requestType, options);
+			var checkRequestAnswer = ONZ.checkRequest(requestType, options);
 
 			(checkRequestAnswer).should.be.ok;
 			(checkRequestAnswer).should.be.equal('NOACTION');
@@ -353,7 +353,7 @@ describe('Lisk.api()', function () {
 
 		it('should not accept falsy options like undefined', function (done) {
 			try {
-				lisk.api().sendRequest('delegates/', {limit:undefined}, function () {});
+				onz.api().sendRequest('delegates/', {limit:undefined}, function () {});
 			} catch (e) {
 				(e.message).should.be.equal('parameter value "limit" should not be undefined');
 				done();
@@ -362,7 +362,7 @@ describe('Lisk.api()', function () {
 
 		it('should not accept falsy options like NaN', function (done) {
 			try {
-				lisk.api().sendRequest('delegates/', {limit:NaN}, function () {});
+				onz.api().sendRequest('delegates/', {limit:NaN}, function () {});
 			} catch (e) {
 				(e.message).should.be.equal('parameter value "limit" should not be NaN');
 				done();
@@ -376,7 +376,7 @@ describe('Lisk.api()', function () {
 		it('should give the correct parameters for GET requests', function () {
 			var requestType = 'transactions';
 			var options = {blockId: '123', senderId: '123'};
-			var checkRequestAnswer = lisk.api({ node: 'localhost' }).changeRequest(requestType, options);
+			var checkRequestAnswer = onz.api({ node: 'localhost' }).changeRequest(requestType, options);
 
 			var output = {
 				nethash: '',
@@ -385,7 +385,7 @@ describe('Lisk.api()', function () {
 					blockId: '123',
 					senderId: '123'
 				},
-				requestUrl: 'http://localhost:8000/api/transactions?blockId=123&senderId=123'
+				requestUrl: 'http://localhost:11000/api/transactions?blockId=123&senderId=123'
 			};
 
 			(checkRequestAnswer).should.be.ok;
@@ -395,7 +395,7 @@ describe('Lisk.api()', function () {
 		it('should give the correct parameters for GET requests with parameters', function () {
 			var requestType = 'delegates/search/';
 			var options = {q: 'oliver'};
-			var checkRequestAnswer = lisk.api({ node: 'localhost' }).changeRequest(requestType, options);
+			var checkRequestAnswer = onz.api({ node: 'localhost' }).changeRequest(requestType, options);
 
 			var output = {
 				nethash: '',
@@ -403,7 +403,7 @@ describe('Lisk.api()', function () {
 				requestParams: {
 					q: 'oliver',
 				},
-				requestUrl: 'http://localhost:8000/api/delegates/search/?q=oliver'
+				requestUrl: 'http://localhost:11000/api/delegates/search/?q=oliver'
 			};
 
 			(checkRequestAnswer).should.be.ok;
@@ -413,7 +413,7 @@ describe('Lisk.api()', function () {
 		it('should give the correct parameters for NOACTION requests', function () {
 			var requestType = 'delegates/forging/enable';
 			var options = {secret: '123'};
-			var checkRequestAnswer = lisk.api({ node: 'localhost' }).changeRequest(requestType, options);
+			var checkRequestAnswer = onz.api({ node: 'localhost' }).changeRequest(requestType, options);
 
 			var output = {
 				nethash: '',
@@ -429,13 +429,13 @@ describe('Lisk.api()', function () {
 		it('should give the correct parameters for POST requests', function () {
 			var requestType = 'accounts/open';
 			var options = {secret: '123'};
-			var checkRequestAnswer = lisk.api({ node: 'localhost' }).changeRequest(requestType, options);
+			var checkRequestAnswer = onz.api({ node: 'localhost' }).changeRequest(requestType, options);
 
 			var output = {
 				nethash: '',
 				requestMethod: 'GET',
 				requestParams: {secret: '123'},
-				requestUrl: 'http://localhost:8000/api/accounts?address=12475940823804898745L'
+				requestUrl: 'http://localhost:11000/api/accounts?address=12475940823804898745Z'
 			};
 
 			(checkRequestAnswer).should.be.ok;
@@ -445,7 +445,7 @@ describe('Lisk.api()', function () {
 		it('should give the correct parameters for PUT requests', function () {
 			var requestType = 'signatures';
 			var options = {secret: '123', secondSecret: '1234'};
-			var checkRequestAnswer = lisk.api({ node: 'localhost' }).changeRequest(requestType, options);
+			var checkRequestAnswer = onz.api({ node: 'localhost' }).changeRequest(requestType, options);
 
 			(checkRequestAnswer).should.be.ok;
 			(checkRequestAnswer.requestParams.transaction).should.have.property('id').which.is.a.String();
@@ -460,8 +460,8 @@ describe('Lisk.api()', function () {
 			var expectedResponse = {
 				body: { success: true, height: 2850466 },
 			};
-			var stub = sinon.stub(LSK, 'sendRequestPromise').resolves(expectedResponse);
-			return LSK.sendRequest('blocks/getHeight', function (data) {
+			var stub = sinon.stub(ONZ, 'sendRequestPromise').resolves(expectedResponse);
+			return ONZ.sendRequest('blocks/getHeight', function (data) {
 				(data).should.be.ok();
 				(data).should.be.type('object');
 				(data.success).should.be.true();
@@ -493,14 +493,14 @@ describe('Lisk.api()', function () {
 		it('should list active delegates', function () {
 			var callback = sinon.spy();
 			var options = { limit: '1' };
-			sinon.stub(LSK, 'sendRequest').callsArgWith(2, expectedResponse);
+			sinon.stub(ONZ, 'sendRequest').callsArgWith(2, expectedResponse);
 
-			LSK.listActiveDelegates('1', callback);
+			ONZ.listActiveDelegates('1', callback);
 
-			(LSK.sendRequest.calledWith('delegates/', options)).should.be.true();
+			(ONZ.sendRequest.calledWith('delegates/', options)).should.be.true();
 			(callback.called).should.be.true();
 			(callback.calledWith(expectedResponse)).should.be.true();
-			LSK.sendRequest.restore();
+			ONZ.sendRequest.restore();
 		});
 	});
 
@@ -526,14 +526,14 @@ describe('Lisk.api()', function () {
 		it('should list standby delegates', function () {
 			var callback = sinon.spy();
 			var options =  { limit: '1', orderBy: 'rate:asc', offset: 101 };
-			sinon.stub(LSK, 'sendRequest').callsArgWith(2, expectedResponse);
+			sinon.stub(ONZ, 'sendRequest').callsArgWith(2, expectedResponse);
 
-			LSK.listStandbyDelegates('1', callback);
+			ONZ.listStandbyDelegates('1', callback);
 
-			(LSK.sendRequest.calledWith('delegates/', options)).should.be.true();
+			(ONZ.sendRequest.calledWith('delegates/', options)).should.be.true();
 			(callback.called).should.be.true();
 			(callback.calledWith(expectedResponse)).should.be.true();
-			LSK.sendRequest.restore();
+			ONZ.sendRequest.restore();
 		});
 	});
 
@@ -555,14 +555,14 @@ describe('Lisk.api()', function () {
 		it('should find a delegate by name', function () {
 			var callback = sinon.spy();
 			var options = { q: 'oliver' };
-			sinon.stub(LSK, 'sendRequest').callsArgWith(2, expectedResponse);
+			sinon.stub(ONZ, 'sendRequest').callsArgWith(2, expectedResponse);
 
-			LSK.searchDelegateByUsername('oliver', callback);
+			ONZ.searchDelegateByUsername('oliver', callback);
 
-			(LSK.sendRequest.calledWith('delegates/search/', options)).should.be.true();
+			(ONZ.sendRequest.calledWith('delegates/search/', options)).should.be.true();
 			(callback.called).should.be.true();
 			(callback.calledWith(expectedResponse)).should.be.true();
-			LSK.sendRequest.restore();
+			ONZ.sendRequest.restore();
 		});
 	});
 
@@ -594,14 +594,14 @@ describe('Lisk.api()', function () {
 		it('should list amount of blocks defined', function () {
 			var callback = sinon.spy();
 			var options = { limit: '1'};
-			sinon.stub(LSK, 'sendRequest').callsArgWith(2, expectedResponse);
+			sinon.stub(ONZ, 'sendRequest').callsArgWith(2, expectedResponse);
 
-			LSK.listBlocks('1', callback);
+			ONZ.listBlocks('1', callback);
 
-			(LSK.sendRequest.calledWith('blocks', options)).should.be.true();
+			(ONZ.sendRequest.calledWith('blocks', options)).should.be.true();
 			(callback.called).should.be.true();
 			(callback.calledWith(expectedResponse)).should.be.true();
-			LSK.sendRequest.restore();
+			ONZ.sendRequest.restore();
 		});
 	});
 
@@ -616,14 +616,14 @@ describe('Lisk.api()', function () {
 			var callback = sinon.spy();
 			var key = '130649e3d8d34eb59197c00bcf6f199bc4ec06ba0968f1d473b010384569e7f0';
 			var options = { generatorPublicKey: key};
-			sinon.stub(LSK, 'sendRequest').callsArgWith(2, expectedResponse);
+			sinon.stub(ONZ, 'sendRequest').callsArgWith(2, expectedResponse);
 
-			LSK.listForgedBlocks(key, callback);
+			ONZ.listForgedBlocks(key, callback);
 
-			(LSK.sendRequest.calledWith('blocks', options)).should.be.true();
+			(ONZ.sendRequest.calledWith('blocks', options)).should.be.true();
 			(callback.called).should.be.true();
 			(callback.calledWith(expectedResponse)).should.be.true();
-			LSK.sendRequest.restore();
+			ONZ.sendRequest.restore();
 		});
 	});
 
@@ -657,14 +657,14 @@ describe('Lisk.api()', function () {
 			var callback = sinon.spy();
 			var blockId = '2346638';
 			var options = { height: blockId};
-			sinon.stub(LSK, 'sendRequest').callsArgWith(2, expectedResponse);
+			sinon.stub(ONZ, 'sendRequest').callsArgWith(2, expectedResponse);
 
-			LSK.getBlock(blockId, callback);
+			ONZ.getBlock(blockId, callback);
 
-			(LSK.sendRequest.calledWith('blocks', options)).should.be.true();
+			(ONZ.sendRequest.calledWith('blocks', options)).should.be.true();
 			(callback.called).should.be.true();
 			(callback.calledWith(expectedResponse)).should.be.true();
-			LSK.sendRequest.restore();
+			ONZ.sendRequest.restore();
 		});
 	});
 
@@ -704,14 +704,14 @@ describe('Lisk.api()', function () {
 				offset: '2',
 				orderBy: 'timestamp:desc'
 			};
-			sinon.stub(LSK, 'sendRequest').callsArgWith(2, expectedResponse);
+			sinon.stub(ONZ, 'sendRequest').callsArgWith(2, expectedResponse);
 
-			LSK.listTransactions(address, '1', '2', callback);
+			ONZ.listTransactions(address, '1', '2', callback);
 
-			(LSK.sendRequest.calledWith('transactions', options)).should.be.true();
+			(ONZ.sendRequest.calledWith('transactions', options)).should.be.true();
 			(callback.called).should.be.true();
 			(callback.calledWith(expectedResponse)).should.be.true();
-			LSK.sendRequest.restore();
+			ONZ.sendRequest.restore();
 		});
 	});
 
@@ -745,14 +745,14 @@ describe('Lisk.api()', function () {
 			var options = {
 				id: transactionId
 			};
-			sinon.stub(LSK, 'sendRequest').callsArgWith(2, expectedResponse);
+			sinon.stub(ONZ, 'sendRequest').callsArgWith(2, expectedResponse);
 
-			LSK.getTransaction(transactionId, callback);
+			ONZ.getTransaction(transactionId, callback);
 
-			(LSK.sendRequest.calledWith('transactions/get', options)).should.be.true();
+			(ONZ.sendRequest.calledWith('transactions/get', options)).should.be.true();
 			(callback.called).should.be.true();
 			(callback.calledWith(expectedResponse)).should.be.true();
-			LSK.sendRequest.restore();
+			ONZ.sendRequest.restore();
 		});
 	});
 
@@ -781,14 +781,14 @@ describe('Lisk.api()', function () {
 			var options = {
 				address: address
 			};
-			sinon.stub(LSK, 'sendRequest').callsArgWith(2, expectedResponse);
+			sinon.stub(ONZ, 'sendRequest').callsArgWith(2, expectedResponse);
 
-			LSK.listVotes(address, callback);
+			ONZ.listVotes(address, callback);
 
-			(LSK.sendRequest.calledWith('accounts/delegates', options)).should.be.true();
+			(ONZ.sendRequest.calledWith('accounts/delegates', options)).should.be.true();
 			(callback.called).should.be.true();
 			(callback.calledWith(expectedResponse)).should.be.true();
-			LSK.sendRequest.restore();
+			ONZ.sendRequest.restore();
 		});
 	});
 
@@ -811,14 +811,14 @@ describe('Lisk.api()', function () {
 			var options = {
 				publicKey: publicKey
 			};
-			sinon.stub(LSK, 'sendRequest').callsArgWith(2, expectedResponse);
+			sinon.stub(ONZ, 'sendRequest').callsArgWith(2, expectedResponse);
 
-			LSK.listVoters(publicKey, callback);
+			ONZ.listVoters(publicKey, callback);
 
-			(LSK.sendRequest.calledWith('delegates/voters', options)).should.be.true();
+			(ONZ.sendRequest.calledWith('delegates/voters', options)).should.be.true();
 			(callback.called).should.be.true();
 			(callback.calledWith(expectedResponse)).should.be.true();
-			LSK.sendRequest.restore();
+			ONZ.sendRequest.restore();
 		});
 	});
 
@@ -846,41 +846,41 @@ describe('Lisk.api()', function () {
 			var options = {
 				address: address
 			};
-			sinon.stub(LSK, 'sendRequest').callsArgWith(2, expectedResponse);
+			sinon.stub(ONZ, 'sendRequest').callsArgWith(2, expectedResponse);
 
-			LSK.getAccount(address, callback);
+			ONZ.getAccount(address, callback);
 
-			(LSK.sendRequest.calledWith('accounts', options)).should.be.true();
+			(ONZ.sendRequest.calledWith('accounts', options)).should.be.true();
 			(callback.called).should.be.true();
 			(callback.calledWith(expectedResponse)).should.be.true();
-			LSK.sendRequest.restore();
+			ONZ.sendRequest.restore();
 		});
 	});
 
-	describe('#sendLSK', function () {
+	describe('#sendONZ', function () {
 		var expectedResponse = {
 			body: { success: true, transactionId: '8921031602435581844' }
 		};
-		it('should send testnet LSK', function () {
+		it('should send testnet ONZ', function () {
 			var options = {
 				ssl: false,
 				node: '',
 				randomPeer: true,
 				testnet: true,
-				port: '7000',
+				port: '10998',
 				bannedPeers: []
 			};
 			var callback = sinon.spy();
-			var LSKnode = lisk.api(options);
+			var ONZnode = onz.api(options);
 			var secret = 'soap arm custom rhythm october dove chunk force own dial two odor';
 			var secondSecret = 'spider must salmon someone toe chase aware denial same chief else human';
 			var recipient = '10279923186189318946L';
 			var amount = 100000000;
-			sinon.stub(LSKnode, 'sendRequest').callsArgWith(2, expectedResponse);
+			sinon.stub(ONZnode, 'sendRequest').callsArgWith(2, expectedResponse);
 
-			LSKnode.sendLSK(recipient, amount, secret, secondSecret, callback);
+			ONZnode.sendONZ(recipient, amount, secret, secondSecret, callback);
 
-			(LSKnode.sendRequest.calledWith('transactions', {
+			(ONZnode.sendRequest.calledWith('transactions', {
 				recipientId: recipient,
 				amount: amount,
 				secret: secret,
@@ -889,59 +889,59 @@ describe('Lisk.api()', function () {
 
 			(callback.called).should.be.true();
 			(callback.calledWith(expectedResponse)).should.be.true();
-			LSKnode.sendRequest.restore();
+			ONZnode.sendRequest.restore();
 		});
 	});
 
 	describe('#checkReDial', function () {
 
 		it('should check if all the peers are already banned', function () {
-			(lisk.api().checkReDial()).should.be.equal(true);
+			(onz.api().checkReDial()).should.be.equal(true);
 		});
 
 		it('should be able to get a new node when current one is not reachable', function (done) {
-			lisk.api({ node: '123', randomPeer: true }).sendRequest('blocks/getHeight', {}, function (result) {
+			onz.api({ node: '123', randomPeer: true }).sendRequest('blocks/getHeight', {}, function (result) {
 				(result).should.be.type('object');
 				done();
 			});
 		});
 
 		it('should recognize that now all the peers are banned for mainnet', function () {
-			var thisLSK = lisk.api();
-			thisLSK.bannedPeers = lisk.api().defaultPeers;
+			var thisONZ = onz.api();
+			thisONZ.bannedPeers = onz.api().defaultPeers;
 
-			(thisLSK.checkReDial()).should.be.equal(false);
+			(thisONZ.checkReDial()).should.be.equal(false);
 		});
 
 		it('should recognize that now all the peers are banned for testnet', function () {
-			var thisLSK = lisk.api({ testnet: true });
-			thisLSK.bannedPeers = lisk.api().defaultTestnetPeers;
+			var thisONZ = onz.api({ testnet: true });
+			thisONZ.bannedPeers = onz.api().defaultTestnetPeers;
 
-			(thisLSK.checkReDial()).should.be.equal(false);
+			(thisONZ.checkReDial()).should.be.equal(false);
 		});
 
 		it('should recognize that now all the peers are banned for ssl', function () {
-			var thisLSK = lisk.api({ssl: true});
-			thisLSK.bannedPeers = lisk.api().defaultSSLPeers;
+			var thisONZ = onz.api({ssl: true});
+			thisONZ.bannedPeers = onz.api().defaultSSLPeers;
 
-			(thisLSK.checkReDial()).should.be.equal(false);
+			(thisONZ.checkReDial()).should.be.equal(false);
 		});
 
 		it('should stop redial when all the peers are banned already', function (done) {
-			var thisLSK = lisk.api();
-			thisLSK.bannedPeers = lisk.api().defaultPeers;
-			thisLSK.currentPeer = '';
+			var thisONZ = onz.api();
+			thisONZ.bannedPeers = onz.api().defaultPeers;
+			thisONZ.currentPeer = '';
 
-			thisLSK.sendRequest('blocks/getHeight').then(function (e) {
+			thisONZ.sendRequest('blocks/getHeight').then(function (e) {
 				(e.message).should.be.equal('could not create http request to any of the given peers');
 				done();
 			});
 		});
 
 		it('should redial to new node when randomPeer is set true', function (done) {
-			var thisLSK = lisk.api({ randomPeer: true, node: '123' });
+			var thisONZ = onz.api({ randomPeer: true, node: '123' });
 
-			thisLSK.getAccount('12731041415715717263L', function (data) {
+			thisONZ.getAccount('12731041415715717263L', function (data) {
 				(data).should.be.ok;
 				(data.success).should.be.equal(true);
 				done();
@@ -949,36 +949,36 @@ describe('Lisk.api()', function () {
 		});
 
 		it('should not redial to new node when randomPeer is set to true but unknown nethash provided', function () {
-			var thisLSK = lisk.api({ randomPeer: true, node: '123', nethash: '123' });
+			var thisONZ = onz.api({ randomPeer: true, node: '123', nethash: '123' });
 
-			(thisLSK.checkReDial()).should.be.equal(false);
+			(thisONZ.checkReDial()).should.be.equal(false);
 		});
 
 		it('should redial to mainnet nodes when nethash is set and randomPeer is true', function () {
-			var thisLSK = lisk.api({ randomPeer: true, node: '123', nethash: 'ed14889723f24ecc54871d058d98ce91ff2f973192075c0155ba2b7b70ad2511' });
+			var thisONZ = onz.api({ randomPeer: true, node: '123', nethash: '053ef5853fc3d1e73cc55186c789f69be14c14d48bf748b4c9a5775c8de1056b' });
 
-			(thisLSK.checkReDial()).should.be.equal(true);
-			(thisLSK.testnet).should.be.equal(false);
+			(thisONZ.checkReDial()).should.be.equal(true);
+			(thisONZ.testnet).should.be.equal(false);
 		});
 
 		it('should redial to testnet nodes when nethash is set and randomPeer is true', function () {
-			var thisLSK = lisk.api({ randomPeer: true, node: '123', nethash: 'da3ed6a45429278bac2666961289ca17ad86595d33b31037615d4b8e8f158bba' });
+			var thisONZ = onz.api({ randomPeer: true, node: '123', nethash: 'c6118f371269a8f3c5e26ce2d24fd168131ea356e22bfe44600a6b3122b1dabc' });
 
-			(thisLSK.checkReDial()).should.be.equal(true);
-			(thisLSK.testnet).should.be.equal(true);
+			(thisONZ.checkReDial()).should.be.equal(true);
+			(thisONZ.testnet).should.be.equal(true);
 		});
 
 		it('should not redial when randomPeer is set false', function () {
-			var thisLSK = lisk.api({ randomPeer: false});
+			var thisONZ = onz.api({ randomPeer: false});
 
-			(thisLSK.checkReDial()).should.be.equal(false);
+			(thisONZ.checkReDial()).should.be.equal(false);
 		});
 	});
 
 	describe('#sendRequest with promise', function () {
 
 		it('should be able to use sendRequest as a promise for GET', function (done) {
-			lisk.api().sendRequest('blocks/getHeight', {}).then(function (result) {
+			onz.api().sendRequest('blocks/getHeight', {}).then(function (result) {
 				(result).should.be.type('object');
 				(result.success).should.be.equal(true);
 				(result.height).should.be.type('number');
@@ -987,7 +987,7 @@ describe('Lisk.api()', function () {
 		});
 
 		it('should route the request accordingly when request method is POST but GET can be used', function (done) {
-			lisk.api().sendRequest('accounts/open', { secret: '123' }).then(function (result) {
+			onz.api().sendRequest('accounts/open', { secret: '123' }).then(function (result) {
 				(result).should.be.type('object');
 				(result.account).should.be.ok;
 				done();
@@ -995,7 +995,7 @@ describe('Lisk.api()', function () {
 		});
 
 		it('should respond with error when API call is disabled', function (done) {
-			lisk.api().sendRequest('delegates/forging/enable', { secret: '123' }).then(function (result) {
+			onz.api().sendRequest('delegates/forging/enable', { secret: '123' }).then(function (result) {
 				(result.error).should.be.equal('Forging not available via offlineRequest');
 				done();
 			});
@@ -1007,17 +1007,17 @@ describe('Lisk.api()', function () {
 				node: '',
 				randomPeer: true,
 				testnet: true,
-				port: '7000',
+				port: '10998',
 				bannedPeers: []
 			};
 
-			var LSKnode = lisk.api(options);
+			var ONZnode = onz.api(options);
 			var secret = 'soap arm custom rhythm october dove chunk force own dial two odor';
 			var secondSecret = 'spider must salmon someone toe chase aware denial same chief else human';
 			var recipient = '10279923186189318946L';
 			var amount = 100000000;
 
-			LSKnode.sendRequest('transactions', { recipientId: recipient, secret: secret, secondSecret: secondSecret, amount: amount }).then(function (result) {
+			ONZnode.sendRequest('transactions', { recipientId: recipient, secret: secret, secondSecret: secondSecret, amount: amount }).then(function (result) {
 				(result).should.be.type('object');
 				(result).should.be.ok;
 				done();
@@ -1025,17 +1025,17 @@ describe('Lisk.api()', function () {
 		});
 
 		it('should retry timestamp in future failures', function () {
-			var thisLSK = lisk.api();
+			var thisONZ = onz.api();
 			var successResponse = { body: { success: true } };
 			var futureTimestampResponse = {
 				body: { success: false, message: 'Invalid transaction timestamp. Timestamp is in the future' }
 			};
-			var stub = sinon.stub(thisLSK, 'sendRequestPromise');
-			var spy = sinon.spy(thisLSK, 'sendRequest');
+			var stub = sinon.stub(thisONZ, 'sendRequestPromise');
+			var spy = sinon.spy(thisONZ, 'sendRequest');
 			stub.resolves(futureTimestampResponse);
 			stub.onThirdCall().resolves(successResponse);
 
-			return thisLSK.sendRequest('transactions')
+			return thisONZ.sendRequest('transactions')
 				.then(function () {
 					(spy.callCount).should.equal(3);
 					(spy.args[1][1]).should.have.property('timeOffset').equal(10e3);
@@ -1046,15 +1046,15 @@ describe('Lisk.api()', function () {
 		});
 
 		it('should not retry timestamp in future failures forever', function () {
-			var thisLSK = lisk.api();
+			var thisONZ = onz.api();
 			var futureTimestampResponse = {
 				body: { success: false, message: 'Invalid transaction timestamp. Timestamp is in the future' }
 			};
-			var stub = sinon.stub(thisLSK, 'sendRequestPromise');
-			var spy = sinon.spy(thisLSK, 'sendRequest');
+			var stub = sinon.stub(thisONZ, 'sendRequestPromise');
+			var spy = sinon.spy(thisONZ, 'sendRequest');
 			stub.resolves(futureTimestampResponse);
 
-			return thisLSK.sendRequest('transactions')
+			return thisONZ.sendRequest('transactions')
 				.then(function (response) {
 					(response).should.equal(futureTimestampResponse.body);
 					stub.restore();
@@ -1067,7 +1067,7 @@ describe('Lisk.api()', function () {
 	describe('#listMultisignatureTransactions', function () {
 
 		it('should list all current not signed multisignature transactions', function (done) {
-			lisk.api().listMultisignatureTransactions(function (result) {
+			onz.api().listMultisignatureTransactions(function (result) {
 				(result).should.be.ok;
 				(result).should.be.type('object');
 				done();
@@ -1078,7 +1078,7 @@ describe('Lisk.api()', function () {
 	describe('#getMultisignatureTransaction', function () {
 
 		it('should get a multisignature transaction by id', function (done) {
-			lisk.api().getMultisignatureTransaction('123', function (result) {
+			onz.api().getMultisignatureTransaction('123', function (result) {
 				(result).should.be.ok;
 				(result).should.be.type('object');
 				done();
