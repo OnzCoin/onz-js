@@ -160,9 +160,9 @@ describe('crypto.js', function () {
 			(fee).should.be.type('number').and.equal(500000000);
 		});
 
-		it('should be equal 2500000000', function () {
+		it('should be equal 20000000000', function () {
 			var fee = getFee({type: 2});
-			(fee).should.be.type('number').and.equal(2500000000);
+			(fee).should.be.type('number').and.equal(20000000000);
 		});
 
 		it('should be equal 100000000', function () {

@@ -100,8 +100,8 @@ describe('dapp.js', function () {
 				(trs.amount).should.be.type('number').and.equal(0);
 			});
 
-			it('should have fee as number and equal 2500000000', function () {
-				(trs.fee).should.be.type('number').and.equal(2500000000);
+			it('should have fee as number and equal 20000000000', function () {
+				(trs.fee).should.be.type('number').and.equal(20000000000);
 			});
 
 			it('should have null recipientId', function () {
