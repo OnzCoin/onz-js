@@ -98,7 +98,7 @@ function OnzAPI (options) {
 	this.defaultSSLPeers = this.defaultPeers;
 
 	this.defaultTestnetPeers = [
-		'testnet.onzcoin.com'
+    'testnet.onzcoin.com'
 	];
 
 	this.options = options;
