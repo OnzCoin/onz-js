@@ -125,8 +125,8 @@ OnzAPI.prototype.netHashOptions = function () {
 	return {
 		testnet: {
 			'Content-Type': 'application/json',
-			'nethash': 'c6118f371269a8f3c5e26ce2d24fd168131ea356e22bfe44600a6b3122b1dabc',
-			'broadhash': 'c6118f371269a8f3c5e26ce2d24fd168131ea356e22bfe44600a6b3122b1dabc',
+			'nethash': '843351db5e4434c7660035204456c2cb30d362f0fb4aaa30e0c20d6f4d197fda',
+			'broadhash': '843351db5e4434c7660035204456c2cb30d362f0fb4aaa30e0c20d6f4d197fda',
 			'os': 'onz-js-api',
 			'version': '1.0.0',
 			'minVersion': '>=0.5.0',
@@ -134,8 +134,8 @@ OnzAPI.prototype.netHashOptions = function () {
 		},
 		mainnet: {
 			'Content-Type': 'application/json',
-			'nethash': '053ef5853fc3d1e73cc55186c789f69be14c14d48bf748b4c9a5775c8de1056b',
-			'broadhash': '053ef5853fc3d1e73cc55186c789f69be14c14d48bf748b4c9a5775c8de1056b',
+			'nethash': '463aeac28885fa5be9efc4d095900f622e3d9efac8c9317b7f1e8fe804d5a039',
+			'broadhash': '463aeac28885fa5be9efc4d095900f622e3d9efac8c9317b7f1e8fe804d5a039',
 			'os': 'onz-js-api',
 			'version': '1.0.0',
 			'minVersion': '>=0.5.0',
