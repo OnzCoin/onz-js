@@ -20,9 +20,9 @@ Onz JS is a JavaScript library for [Onz - the cryptocurrency and blockchain appl
 
 ## CDN
 
-https://gitcdn.xyz/repo/OnzCoin/onz-js/development/dist/onz-js.js<br/>
+https://gitcdn.xyz/repo/OnzCoin/onz-js/master/dist/onz-js.js<br/>
 ```html
-<script src="https://gitcdn.xyz/repo/OnzCoin/onz-js/development/dist/onz-js.js"></script>
+<script src="https://gitcdn.xyz/repo/OnzCoin/onz-js/master/dist/onz-js.js"></script>
 ```
 
 ## Server
@@ -34,7 +34,7 @@ $ npm install onz-js --save
 
 To learn more about the API or to experiment with some data, please go to the github page:
 
-http://onzcoin.github.io/onz-js/
+http://onzcoin.github.io/
 
 ## Tests
 
@@ -47,26 +47,26 @@ Tests written using mocha + schedule.js.
 ## Documentation
 
 - [Install](http://onzcoin.github.io/onz-js/index.html)
-- [API](http://onzcoin.github.io/onz-js/example/api.html)
-	- [Settings](http://onzcoin.github.io/onz-js/example/api.html#settings)
-	- [API Functions](http://onzcoin.github.io/onz-js/example/api.html#api_functions)
-	- [Network Functions](http://onzcoin.github.io/onz-js/example/api.html#network_functions)
-- [Crypto](http://onzcoin.github.io/onz-js/example/api.html#crypto)
-- [Transactions](http://onzcoin.github.io/onz-js/example/api.html#transactions)
-	- [Create Transaction](http://onzcoin.github.io/onz-js/example/api.html#functions_createTransaction)
-	- [Create Vote](http://onzcoin.github.io/onz-js/example/api.html#functions_createVote)
-	- [Create Dapp](http://onzcoin.github.io/onz-js/example/api.html#functions_createDapp)
-	- [Create Delegate](http://onzcoin.github.io/onz-js/example/api.html#functions_createDelegate)
-	- [Create Second Signature](http://onzcoin.github.io/onz-js/example/api.html#functions_createSignature)
-	- [Create Multisignature Account](http://onzcoin.github.io/onz-js/example/api.html#functions_createMultisignature)
-	- [Sign Multisignature Transaction](http://onzcoin.github.io/onz-js/example/api.html#functions_signMultisignature)
-- [Experiment (live)](http://onzcoin.github.io/onz-js/example/experiment.html)
-	- [Get Account Info](http://onzcoin.github.io/onz-js/example/experiment.html#get_account)
-	- [Send ONZ](http://onzcoin.github.io/onz-js/example/experiment.html#send_onz)
-	- [Sign Message](http://onzcoin.github.io/onz-js/example/experiment.html#sign)
-	- [Verify Message](http://onzcoin.github.io/onz-js/example/experiment.html#verify)
-	- [Encrypt Message](http://onzcoin.github.io/onz-js/example/experiment.html#encrypt)
-	- [Decrypt Message](http://onzcoin.github.io/onz-js/example/experiment.html#decrypt)
+- [API](http://onzcoin.github.io/example/api.html)
+	- [Settings](http://onzcoin.github.io/example/api.html#settings)
+	- [API Functions](http://onzcoin.github.io/example/api.html#api_functions)
+	- [Network Functions](http://onzcoin.github.io/example/api.html#network_functions)
+- [Crypto](http://onzcoin.github.io//example/api.html#crypto)
+- [Transactions](http://onzcoin.github.io/example/api.html#transactions)
+	- [Create Transaction](http://onzcoin.github.io//example/api.html#functions_createTransaction)
+	- [Create Vote](http://onzcoin.github.io/example/api.html#functions_createVote)
+	- [Create Dapp](http://onzcoin.github.io/example/api.html#functions_createDapp)
+	- [Create Delegate](http://onzcoin.github.io/example/api.html#functions_createDelegate)
+	- [Create Second Signature](http://onzcoin.github.io/example/api.html#functions_createSignature)
+	- [Create Multisignature Account](http://onzcoin.github.io/example/api.html#functions_createMultisignature)
+	- [Sign Multisignature Transaction](http://onzcoin.github.io/example/api.html#functions_signMultisignature)
+- [Experiment (live)](http://onzcoin.github.io/example/experiment.html)
+	- [Get Account Info](http://onzcoin.github.io/example/experiment.html#get_account)
+	- [Send ONZ](http://onzcoin.github.io/example/experiment.html#send_onz)
+	- [Sign Message](http://onzcoin.github.io/example/experiment.html#sign)
+	- [Verify Message](http://onzcoin.github.io/example/experiment.html#verify)
+	- [Encrypt Message](http://onzcoin.github.io/example/experiment.html#encrypt)
+	- [Decrypt Message](http://onzcoin.github.io/example/experiment.html#decrypt)
 
 ## Authors
 
