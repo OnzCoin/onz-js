@@ -33,7 +33,7 @@ describe('Onz.api()', function () {
 			(ONZ.listPeers()).should.be.ok;
 			(ONZ.listPeers()).should.be.type.Object;
 			(ONZ.listPeers().official.length).should.be.equal(8);
-			(ONZ.listPeers().testnet.length).should.be.equal(1);
+			(ONZ.listPeers().testnet.length).should.be.equal(2);
 		});
 	});
 
@@ -644,7 +644,7 @@ describe('Onz.api()', function () {
 					payloadLength: 0,
 					payloadHash: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
 					generatorPublicKey: '2cb967f6c73d9b6b8604d7b199271fed3183ff18ae0bd9cde6d6ef6072f83c05',
-					generatorId: '9540619224043865035L',
+					generatorId: '17734866054786038635Z',
 					blockSignature: '0c0554e28adeeed7f1071cc5cba76b77340e0f406757e7a9e7ab80b1711856089ec743dd4954c2db10ca6e5e2dab79d48d15f7b5a08e59c29d622a1a20e1fd0d',
 					confirmations: 506049,
 					totalForged: '500000000',
@@ -679,8 +679,8 @@ describe('Onz.api()', function () {
 					type: 0,
 					timestamp: 30676572,
 					senderPublicKey: '2cb967f6c73d9b6b8604d7b199271fed3183ff18ae0bd9cde6d6ef6072f83c05',
-					senderId: '9540619224043865035L',
-					recipientId: '12731041415715717263L',
+					senderId: '17734866054786038635Z',
+					recipientId: '13389153080173401705Z',
 					recipientPublicKey: 'a81d59b68ba8942d60c74d10bc6488adec2ae1fa9b564a22447289076fe7b1e4',
 					amount: 146537207,
 					fee: 10000000,
@@ -696,7 +696,7 @@ describe('Onz.api()', function () {
 
 		it('should list transactions of a defined account', function () {
 			var callback = sinon.spy();
-			var address = '12731041415715717263L';
+			var address = '13389153080173401705Z';
 			var options = {
 				senderId: address,
 				recipientId: address,
@@ -827,7 +827,7 @@ describe('Onz.api()', function () {
 			body: {
 				success: true,
 				account: {
-					address: '12731041415715717263L',
+					address: '13389153080173401705Z',
 					unconfirmedBalance: '7139704369275',
 					balance: '7139704369275',
 					publicKey: 'a81d59b68ba8942d60c74d10bc6488adec2ae1fa9b564a22447289076fe7b1e4',
@@ -842,7 +842,7 @@ describe('Onz.api()', function () {
 
 		it('should get account information', function () {
 			var callback = sinon.spy();
-			var address= '12731041415715717263L';
+			var address= '13389153080173401705Z';
 			var options = {
 				address: address
 			};
@@ -941,7 +941,7 @@ describe('Onz.api()', function () {
 		it('should redial to new node when randomPeer is set true', function (done) {
 			var thisONZ = onz.api({ randomPeer: true, node: '123' });
 
-			thisONZ.getAccount('12731041415715717263L', function (data) {
+			thisONZ.getAccount('17734866054786038635Z', function (data) {
 				(data).should.be.ok;
 				(data.success).should.be.equal(true);
 				done();

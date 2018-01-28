@@ -108,7 +108,7 @@ describe('slots.js', function () {
 		});
 
 		it('should return slot number, equal to 1', function () {
-			var slot = getSlotNumber(10);
+			var slot = getSlotNumber(15);
 
 			(slot).should.be.type('number').and.equal(1);
 		});
@@ -131,7 +131,7 @@ describe('slots.js', function () {
 			var slotTime = getSlotTime(slot);
 
 			(slotTime).should.be.ok;
-			(slotTime).should.be.type('number').and.equal(196140);
+			(slotTime).should.be.type('number').and.equal(294210);
 		});
 	});
 
