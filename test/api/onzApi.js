@@ -64,8 +64,8 @@ describe('Onz.api()', function () {
 
 			var NetHash = {
 				'Content-Type': 'application/json',
-				'nethash': '843351db5e4434c7660035204456c2cb30d362f0fb4aaa30e0c20d6f4d197fda',
-				'broadhash': '843351db5e4434c7660035204456c2cb30d362f0fb4aaa30e0c20d6f4d197fda',
+				'nethash': 'a0c38f0dd302a6cf5ceef3d9dc5ccf0a12a34ab39c0cc42cf2d2602d8b44b0ad',
+				'broadhash': 'a0c38f0dd302a6cf5ceef3d9dc5ccf0a12a34ab39c0cc42cf2d2602d8b44b0ad',
 				'os': 'onz-js-api',
 				'version': '1.0.0',
 				'minVersion': '>=0.5.0',
@@ -962,7 +962,7 @@ describe('Onz.api()', function () {
 		});
 
 		it('should redial to testnet nodes when nethash is set and randomPeer is true', function () {
-			var thisONZ = onz.api({ randomPeer: true, node: '123', nethash: '843351db5e4434c7660035204456c2cb30d362f0fb4aaa30e0c20d6f4d197fda' });
+			var thisONZ = onz.api({ randomPeer: true, node: '123', nethash: 'a0c38f0dd302a6cf5ceef3d9dc5ccf0a12a34ab39c0cc42cf2d2602d8b44b0ad' });
 
 			(thisONZ.checkReDial()).should.be.equal(true);
 			(thisONZ.testnet).should.be.equal(true);
