@@ -70,13 +70,16 @@ Tests written using mocha + schedule.js.
 
 ## Authors
 
+- Kan Wong <kan@onzcoin.com>
+- Mars Yau <mars@onzcoin.com>
 - Boris Povod <boris@crypti.me>
 - Oliver Beddows <oliver@lightcurve.io>
 - Tobias Schwarz <tobias@lightcurve.io>
 
 ## License
 
-Copyright © 2016-2017 Onz Foundation
+Copyright © 2017-2018 ONZ COIN
+Copyright © 2016-2017 Lisk Foundation
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
