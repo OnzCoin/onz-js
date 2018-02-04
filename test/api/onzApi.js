@@ -49,11 +49,11 @@ describe('Onz.api()', function () {
 		it('Nethash should be hardcoded variables', function () {
 			var NetHash = {
 				'Content-Type': 'application/json',
-				'nethash': '463aeac28885fa5be9efc4d095900f622e3d9efac8c9317b7f1e8fe804d5a039',
-				'broadhash': '463aeac28885fa5be9efc4d095900f622e3d9efac8c9317b7f1e8fe804d5a039',
+				'nethash': 'aa14b4d84260e00b6fc033c022a25965629ab0e8a4aafc77e64cad4cf0dc2e00',
+				'broadhash': 'aa14b4d84260e00b6fc033c022a25965629ab0e8a4aafc77e64cad4cf0dc2e00',
 				'os': 'onz-js-api',
 				'version': '1.0.0',
-				'minVersion': '>=0.5.0',
+				'minVersion': '>=0.5.2',
 				'port': 11000
 			};
 			(ONZ.getNethash()).should.eql(NetHash);
@@ -64,11 +64,11 @@ describe('Onz.api()', function () {
 
 			var NetHash = {
 				'Content-Type': 'application/json',
-				'nethash': '52fd9a2f0857ca94510fae33c5e71b34eb5f9fa45813c5bbf6ee796c3731dbd9',
-				'broadhash': '52fd9a2f0857ca94510fae33c5e71b34eb5f9fa45813c5bbf6ee796c3731dbd9',
+				'nethash': 'aa14b4d84260e00b6fc033c022a25965629ab0e8a4aafc77e64cad4cf0dc2e00',
+				'broadhash': 'aa14b4d84260e00b6fc033c022a25965629ab0e8a4aafc77e64cad4cf0dc2e00',
 				'os': 'onz-js-api',
 				'version': '1.0.0',
-				'minVersion': '>=0.5.0',
+				'minVersion': '>=0.5.2',
 				'port': 10998
 			};
 
@@ -83,7 +83,7 @@ describe('Onz.api()', function () {
 				'broadhash': '463aeac28885fa5be9efc4d095900f622e3d9efac8c9317b7f1e8fe804d5a039',
 				'os': 'onz-js-api',
 				'version': '0.0.0a',
-				'minVersion': '>=0.5.0',
+				'minVersion': '>=0.5.2',
 				'port': 11000
 			};
 			var ONZNethash = onz.api({ nethash: '123' });
@@ -962,7 +962,7 @@ describe('Onz.api()', function () {
 		});
 
 		it('should redial to testnet nodes when nethash is set and randomPeer is true', function () {
-			var thisONZ = onz.api({ randomPeer: true, node: '123', nethash: '52fd9a2f0857ca94510fae33c5e71b34eb5f9fa45813c5bbf6ee796c3731dbd9' });
+			var thisONZ = onz.api({ randomPeer: true, node: '123', nethash: 'aa14b4d84260e00b6fc033c022a25965629ab0e8a4aafc77e64cad4cf0dc2e00' });
 
 			(thisONZ.checkReDial()).should.be.equal(true);
 			(thisONZ.testnet).should.be.equal(true);
