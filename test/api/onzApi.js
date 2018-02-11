@@ -53,7 +53,7 @@ describe('Onz.api()', function () {
 				'broadhash': 'aa14b4d84260e00b6fc033c022a25965629ab0e8a4aafc77e64cad4cf0dc2e00',
 				'os': 'onz-js-api',
 				'version': '1.0.0',
-				'minVersion': '>=0.5.2',
+				'minVersion': '>=0.5.3',
 				'port': 11000
 			};
 			(ONZ.getNethash()).should.eql(NetHash);
@@ -68,7 +68,7 @@ describe('Onz.api()', function () {
 				'broadhash': 'aa14b4d84260e00b6fc033c022a25965629ab0e8a4aafc77e64cad4cf0dc2e00',
 				'os': 'onz-js-api',
 				'version': '1.0.0',
-				'minVersion': '>=0.5.2',
+				'minVersion': '>=0.5.3',
 				'port': 10998
 			};
 
@@ -83,7 +83,7 @@ describe('Onz.api()', function () {
 				'broadhash': '463aeac28885fa5be9efc4d095900f622e3d9efac8c9317b7f1e8fe804d5a039',
 				'os': 'onz-js-api',
 				'version': '0.0.0a',
-				'minVersion': '>=0.5.2',
+				'minVersion': '>=0.5.3',
 				'port': 11000
 			};
 			var ONZNethash = onz.api({ nethash: '123' });
