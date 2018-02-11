@@ -20,7 +20,7 @@
     "bytebuffer": "=5.0.1",
     "crypto-browserify": "=3.11.0",
     "ed2curve": "=0.2.1",
-    "js-nacl": "https://github.com/OnzCoin/js-nacl/tarball/master",
+    "js-nacl": "https://github.com/OnzCoin/js-nacl/archive/v1.0.0.tar.gz",
     "popsicle": "=9.1.0",
     "ripemd160": "^2.0.1"
   },
