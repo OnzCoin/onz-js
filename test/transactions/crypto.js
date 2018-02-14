@@ -35,41 +35,41 @@ describe('crypto.js', function () {
 			(getBytes).should.be.type('function');
 		});
 
-		it('should return Buffer of simply transaction and buffer most be 117 length', function () {
+		it('should return Buffer of simply transaction and buffer most be 132 length for ONZ', function () {
 			var transaction = {
 				type: 0,
-				amount: 1000,
-				recipientId: '58191285901858109L',
-				timestamp: 141738,
+				amount: 10000000,
+				recipientId: 'ONZkM9RAtLm8CvBQSjYbzxc7VqvsUwz1vyAk',
+				timestamp: 224985,
 				asset: {},
-				senderPublicKey: '5d036a858ce89f844491762eb89e2bfbd50a4a0a0da658e4b2628b25b117ae09',
-				signature: '618a54975212ead93df8c881655c625544bce8ed7ccdfe6f08a42eecfb1adebd051307be5014bb051617baf7815d50f62129e70918190361e5d4dd4796541b0a',
-				id: '13987348420913138422'
+				senderPublicKey: 'eb7943c56b700b542c360c74b9bc270b528d8202ea6d877708c2c9d38514303e',
+				signature: '19f7ec98eab037cc07f90d4843732e9a550e429b771920ef6f739fb4493770597f963c0ce2d37e18a4c1fd4d8d517330d51d7b2bb74fcebdd534286464623b0b',
+				id: '9a9f1535a63895a3578048be9a62ef20c1990131d341d85576cd206c74ef11a1'
 			};
 
 			bytes = getBytes(transaction);
 			(bytes).should.be.ok;
 			(bytes).should.be.type('object');
-			(bytes.length).should.be.equal(117);
+			(bytes.length).should.be.equal(132);
 		});
 
 		it('should return Buffer of transaction with second signature and buffer most be 181 length', function () {
 			var transaction = {
 				type: 0,
-				amount: 1000,
-				recipientId: '58191285901858109L',
-				timestamp: 141738,
+				amount: 10000000,
+				recipientId: 'ONZkM9RAtLm8CvBQSjYbzxc7VqvsUwz1vyAk',
+				timestamp: 224985,
 				asset: {},
-				senderPublicKey: '5d036a858ce89f844491762eb89e2bfbd50a4a0a0da658e4b2628b25b117ae09',
-				signature: '618a54975212ead93df8c881655c625544bce8ed7ccdfe6f08a42eecfb1adebd051307be5014bb051617baf7815d50f62129e70918190361e5d4dd4796541b0a',
-				signSignature: '618a54975212ead93df8c881655c625544bce8ed7ccdfe6f08a42eecfb1adebd051307be5014bb051617baf7815d50f62129e70918190361e5d4dd4796541b0a',
-				id: '13987348420913138422'
+				senderPublicKey: 'eb7943c56b700b542c360c74b9bc270b528d8202ea6d877708c2c9d38514303e',
+				signature: '19f7ec98eab037cc07f90d4843732e9a550e429b771920ef6f739fb4493770597f963c0ce2d37e18a4c1fd4d8d517330d51d7b2bb74fcebdd534286464623b0b',
+				signSignature: '19f7ec98eab037cc07f90d4843732e9a550e429b771920ef6f739fb4493770597f963c0ce2d37e18a4c1fd4d8d517330d51d7b2bb74fcebdd534286464623b0b',
+				id: '9a9f1535a63895a3578048be9a62ef20c1990131d341d85576cd206c74ef11a1'
 			};
 
 			bytes = getBytes(transaction);
 			(bytes).should.be.ok;
 			(bytes).should.be.type('object');
-			(bytes.length).should.be.equal(181);
+			(bytes.length).should.be.equal(196);
 		});
 	});
 
@@ -89,12 +89,12 @@ describe('crypto.js', function () {
 			var transaction = {
 				type: 0,
 				amount: 1000,
-				recipientId: '58191285901858109L',
+				recipientId: 'ONZkM9RAtLm8CvBQSjYbzxc7VqvsUwz1vyAk',
 				timestamp: 141738,
 				asset: {},
-				senderPublicKey: '5d036a858ce89f844491762eb89e2bfbd50a4a0a0da658e4b2628b25b117ae09',
-				signature: '618a54975212ead93df8c881655c625544bce8ed7ccdfe6f08a42eecfb1adebd051307be5014bb051617baf7815d50f62129e70918190361e5d4dd4796541b0a',
-				id: '13987348420913138422'
+				senderPublicKey: 'eb7943c56b700b542c360c74b9bc270b528d8202ea6d877708c2c9d38514303e',
+				signature: '19f7ec98eab037cc07f90d4843732e9a550e429b771920ef6f739fb4493770597f963c0ce2d37e18a4c1fd4d8d517330d51d7b2bb74fcebdd534286464623b0b',
+				id: '9a9f1535a63895a3578048be9a62ef20c1990131d341d85576cd206c74ef11a1'
 			};
 
 			var result = getHash(transaction);
@@ -116,19 +116,19 @@ describe('crypto.js', function () {
 			(getId).should.be.type('function');
 		});
 
-		it('should return string id and be equal to 13987348420913138422', function () {
+		it('should return string id and be equal to 24af3cd399ed00aac5fae54902e61e8d4f286441ad762979d065e4512b84b977', function () {
 			var transaction = {
 				type: 0,
 				amount: 1000,
-				recipientId: '58191285901858109L',
+				recipientId: 'ONZkM9RAtLm8CvBQSjYbzxc7VqvsUwz1vyAk',
 				timestamp: 141738,
 				asset: {},
-				senderPublicKey: '5d036a858ce89f844491762eb89e2bfbd50a4a0a0da658e4b2628b25b117ae09',
-				signature: '618a54975212ead93df8c881655c625544bce8ed7ccdfe6f08a42eecfb1adebd051307be5014bb051617baf7815d50f62129e70918190361e5d4dd4796541b0a'
+				senderPublicKey: 'b390a3935f0bbc71a4bf601188efedd2dbf74dcd58c52e1bf420f186a7ce9601',
+				signature: '19f7ec98eab037cc07f90d4843732e9a550e429b771920ef6f739fb4493770597f963c0ce2d37e18a4c1fd4d8d517330d51d7b2bb74fcebdd534286464623b0b'
 			};
 
 			var id = getId(transaction);
-			(id).should.be.type('string').and.equal('13987348420913138422');
+			(id).should.be.type('string').and.equal('24af3cd399ed00aac5fae54902e61e8d4f286441ad762979d065e4512b84b977');
 		});
 	});
 
@@ -267,12 +267,12 @@ describe('crypto.js', function () {
 		});
 
 		it('should generate address by publicKey', function () {
-			var keys = crypto.getKeys('secret');
+			var keys = crypto.getKeys('position hunt belt avoid infant slot holiday captain inside lounge car fox');
 			var address = getAddress(keys.publicKey);
 
 			(address).should.be.ok;
 			(address).should.be.type('string');
-			(address).should.be.equal('18160565574430594874Z');
+			(address).should.be.equal('ONZgRgNF3Q3GUBVinNSX4UY9ud5t8gws2XPQ');
 		});
 	});
 
