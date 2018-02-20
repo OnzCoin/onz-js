@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc mocha",
-    "jenkins": "./node_modules/.bin/grunt jenkins --verbose"
+    "jenkins": "grunt jenkins --verbose"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:OnzCoin/onz-js.git"
+    "url": "git+ssh://git@github.com/OnzCoin/onz-js.git"
   },
   "author": "Onz Foundation <admin@onzcoin.com>, lightcurve GmbH <admin@lightcurve.io>",
-  "license": "GPL-3",
+  "license": "GPL-3.0",
   "dependencies": {
     "browserify-bignum": "=1.3.0-2",
     "bs58check": "^1.1.1",
@@ -44,5 +44,23 @@
     "nyc": "=10.3.2",
     "should": "=11.2.1",
     "sinon": "=2.2.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/OnzCoin/onz-js/issues"
+  },
+  "homepage": "https://github.com/OnzCoin/onz-js#readme",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib",
+    "test": "test"
+  },
+  "keywords": [
+    "onz",
+    "onzcoin",
+    "social",
+    "media",
+    "blockchain",
+    "social",
+    "weighiting"
+  ]
 }
