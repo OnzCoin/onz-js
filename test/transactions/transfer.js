@@ -114,7 +114,7 @@ describe('transfer.js', function () {
 		var createOutTransfer = transfer.createOutTransfer;
 		var dappId = '1234213';
 		var transactionId = '9876567';
-		var recipientId = 'ONZkM9RAtLm8CvBQSjYbzxc7VqvsUwz1vyAk';
+		var recipientId = 'ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX';
 		var amount = 10e8;
 		var secret = 'secret';
 		var publicKey = '5d036a858ce89f844491762eb89e2bfbd50a4a0a0da658e4b2628b25b117ae09';

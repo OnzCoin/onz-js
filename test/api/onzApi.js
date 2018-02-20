@@ -49,8 +49,8 @@ describe('Onz.api()', function () {
 		it('Nethash should be hardcoded variables', function () {
 			var NetHash = {
 				'Content-Type': 'application/json',
-				'nethash': 'aa14b4d84260e00b6fc033c022a25965629ab0e8a4aafc77e64cad4cf0dc2e00',
-				'broadhash': 'aa14b4d84260e00b6fc033c022a25965629ab0e8a4aafc77e64cad4cf0dc2e00',
+				'nethash': 'ef56692f7973f7a8e82d6bd5bc68d5f514e4c3ed97d4cfca0345fddd0f421999',
+				'broadhash': 'ef56692f7973f7a8e82d6bd5bc68d5f514e4c3ed97d4cfca0345fddd0f421999',
 				'os': 'onz-js-api',
 				'version': '1.0.0',
 				'minVersion': '>=0.5.3',
@@ -80,7 +80,7 @@ describe('Onz.api()', function () {
 			var NetHash = {
 				'Content-Type': 'application/json',
 				'nethash': '123',
-				'broadhash': '463aeac28885fa5be9efc4d095900f622e3d9efac8c9317b7f1e8fe804d5a039',
+				'broadhash': 'ef56692f7973f7a8e82d6bd5bc68d5f514e4c3ed97d4cfca0345fddd0f421999',
 				'os': 'onz-js-api',
 				'version': '0.0.0a',
 				'minVersion': '>=0.5.3',
@@ -246,11 +246,11 @@ describe('Onz.api()', function () {
 
 		it('should create correct address and publicKey', function () {
 			var address = {
-				publicKey: 'a4465fd76c16fcc458448076372abf1912cc5b150663a64dffefe550f96feadd',
-				address: '12475940823804898745Z'
+				publicKey: '7a50ef8c2d77365a984f9637dad0d054e178346c768bf2e2443ab537d42c8e9a',
+				address: 'ONZkWjUMHnHCoAhw2aZ3XagpnyCYWPEkxPJK'
 			};
 
-			(ONZ.getAddressFromSecret('123')).should.eql(address);
+			(ONZ.getAddressFromSecret('testnet')).should.eql(address);
 		});
 	});
 
@@ -435,7 +435,7 @@ describe('Onz.api()', function () {
 				nethash: '',
 				requestMethod: 'GET',
 				requestParams: {secret: '123'},
-				requestUrl: 'http://localhost:11000/api/accounts?address=12475940823804898745Z'
+				requestUrl: 'http://localhost:11000/api/accounts?address=ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX'
 			};
 
 			(checkRequestAnswer).should.be.ok;
@@ -644,7 +644,7 @@ describe('Onz.api()', function () {
 					payloadLength: 0,
 					payloadHash: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
 					generatorPublicKey: '2cb967f6c73d9b6b8604d7b199271fed3183ff18ae0bd9cde6d6ef6072f83c05',
-					generatorId: '17734866054786038635Z',
+					generatorId: 'ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX',
 					blockSignature: '0c0554e28adeeed7f1071cc5cba76b77340e0f406757e7a9e7ab80b1711856089ec743dd4954c2db10ca6e5e2dab79d48d15f7b5a08e59c29d622a1a20e1fd0d',
 					confirmations: 506049,
 					totalForged: '500000000',
@@ -679,7 +679,7 @@ describe('Onz.api()', function () {
 					type: 0,
 					timestamp: 30676572,
 					senderPublicKey: '2cb967f6c73d9b6b8604d7b199271fed3183ff18ae0bd9cde6d6ef6072f83c05',
-					senderId: '17734866054786038635Z',
+					senderId: 'ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX',
 					recipientId: '13389153080173401705Z',
 					recipientPublicKey: 'a81d59b68ba8942d60c74d10bc6488adec2ae1fa9b564a22447289076fe7b1e4',
 					amount: 146537207,
@@ -696,7 +696,7 @@ describe('Onz.api()', function () {
 
 		it('should list transactions of a defined account', function () {
 			var callback = sinon.spy();
-			var address = '13389153080173401705Z';
+			var address = 'ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX';
 			var options = {
 				senderId: address,
 				recipientId: address,
@@ -938,14 +938,11 @@ describe('Onz.api()', function () {
 			});
 		});
 
-		it('should redial to new node when randomPeer is set true', function (done) {
+		it('should redial to new node when randomPeer is set true', function () {
 			var thisONZ = onz.api({ randomPeer: true, node: '123' });
 
-			thisONZ.getAccount('17734866054786038635Z', function (data) {
-				(data).should.be.ok;
-				(data.success).should.be.equal(true);
-				done();
-			});
+			(thisONZ.checkReDial()).should.be.equal(true);
+			(thisONZ.testnet).should.be.equal(false);
 		});
 
 		it('should not redial to new node when randomPeer is set to true but unknown nethash provided', function () {
@@ -955,7 +952,7 @@ describe('Onz.api()', function () {
 		});
 
 		it('should redial to mainnet nodes when nethash is set and randomPeer is true', function () {
-			var thisONZ = onz.api({ randomPeer: true, node: '123', nethash: '463aeac28885fa5be9efc4d095900f622e3d9efac8c9317b7f1e8fe804d5a039' });
+			var thisONZ = onz.api({ randomPeer: true, node: '123', nethash: 'ef56692f7973f7a8e82d6bd5bc68d5f514e4c3ed97d4cfca0345fddd0f421999' });
 
 			(thisONZ.checkReDial()).should.be.equal(true);
 			(thisONZ.testnet).should.be.equal(false);
@@ -1012,9 +1009,9 @@ describe('Onz.api()', function () {
 			};
 
 			var ONZnode = onz.api(options);
-			var secret = 'soap arm custom rhythm october dove chunk force own dial two odor';
-			var secondSecret = 'spider must salmon someone toe chase aware denial same chief else human';
-			var recipient = '10279923186189318946L';
+			var secret = 'fiscal pretty rice hero away farm uncover melt waste skill myself empower';
+			var secondSecret = 'elephant fun snap priority sentence minute bless parade gown child marine helmet';
+			var recipient = 'ONZgKZmD713cLPfZK9YCTi9RRCxN7mygo7Eo';
 			var amount = 100000000;
 
 			ONZnode.sendRequest('transactions', { recipientId: recipient, secret: secret, secondSecret: secondSecret, amount: amount }).then(function (result) {

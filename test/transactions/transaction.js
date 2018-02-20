@@ -27,7 +27,7 @@ describe('transaction.js', function () {
 		});
 
 		it('should create transaction without second signature', function () {
-			trs = createTransaction('58191285901858109L', 1000, 'secret');
+			trs = createTransaction('ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX', 1000, 'secret');
 			(trs).should.be.ok;
 		});
 
@@ -37,7 +37,7 @@ describe('transaction.js', function () {
 			var time = 36174862;
 			var stub = sinon.stub(slots, 'getTime').returns(time);
 
-			trs = createTransaction('58191285901858109L', 1000, 'secret');
+			trs = createTransaction('ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX', 1000, 'secret');
 
 			(trs).should.have.property('timestamp').and.be.equal(time);
 			(stub.calledWithExactly(now.getTime())).should.be.true();
@@ -53,7 +53,7 @@ describe('transaction.js', function () {
 			var time = 36174862;
 			var stub = sinon.stub(slots, 'getTime').returns(time);
 
-			trs = createTransaction('58191285901858109L', 1000, 'secret', null, offset);
+			trs = createTransaction('ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX', 1000, 'secret', null, offset);
 
 			(trs).should.have.property('timestamp').and.be.equal(time);
 			(stub.calledWithExactly(now.getTime() - offset)).should.be.true();
@@ -92,8 +92,8 @@ describe('transaction.js', function () {
 				});
 			});
 
-			it('should have recipientId as string and to be equal 58191285901858109L', function () {
-				(trs.recipientId).should.be.type('string').and.equal('58191285901858109L');
+			it('should have recipientId as string and to be equal ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX', function () {
+				(trs.recipientId).should.be.type('string').and.equal('ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX');
 			});
 
 			it('should have amount as number and eqaul to 1000', function () {
@@ -147,7 +147,7 @@ describe('transaction.js', function () {
 		});
 
 		it('should create transaction without second signature', function () {
-			trs = createTransaction('58191285901858109L', 1000, 'secret', secondSecret);
+			trs = createTransaction('ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX', 1000, 'secret', secondSecret);
 			(trs).should.be.ok;
 		});
 
@@ -181,8 +181,8 @@ describe('transaction.js', function () {
 				});
 			});
 
-			it('should have recipientId as string and to be equal 58191285901858109L', function () {
-				(trs.recipientId).should.be.type('string').and.equal('58191285901858109L');
+			it('should have recipientId as string and to be equal ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX', function () {
+				(trs.recipientId).should.be.type('string').and.equal('ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX');
 			});
 
 			it('should have amount as number and eqaul to 1000', function () {

@@ -39,7 +39,7 @@ describe('crypto.js', function () {
 			var transaction = {
 				type: 0,
 				amount: 10000000,
-				recipientId: 'ONZkM9RAtLm8CvBQSjYbzxc7VqvsUwz1vyAk',
+				recipientId: 'ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX',
 				timestamp: 224985,
 				asset: {},
 				senderPublicKey: 'eb7943c56b700b542c360c74b9bc270b528d8202ea6d877708c2c9d38514303e',
@@ -57,7 +57,7 @@ describe('crypto.js', function () {
 			var transaction = {
 				type: 0,
 				amount: 10000000,
-				recipientId: 'ONZkM9RAtLm8CvBQSjYbzxc7VqvsUwz1vyAk',
+				recipientId: 'ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX',
 				timestamp: 224985,
 				asset: {},
 				senderPublicKey: 'eb7943c56b700b542c360c74b9bc270b528d8202ea6d877708c2c9d38514303e',
@@ -89,7 +89,7 @@ describe('crypto.js', function () {
 			var transaction = {
 				type: 0,
 				amount: 1000,
-				recipientId: 'ONZkM9RAtLm8CvBQSjYbzxc7VqvsUwz1vyAk',
+				recipientId: 'ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX',
 				timestamp: 141738,
 				asset: {},
 				senderPublicKey: 'eb7943c56b700b542c360c74b9bc270b528d8202ea6d877708c2c9d38514303e',
@@ -116,11 +116,11 @@ describe('crypto.js', function () {
 			(getId).should.be.type('function');
 		});
 
-		it('should return string id and be equal to 24af3cd399ed00aac5fae54902e61e8d4f286441ad762979d065e4512b84b977', function () {
+		it('should return string id and be equal to e9e8cec0197e44192d30fd715c28e59145d2d0b28e7a5c4466ce492007790222', function () {
 			var transaction = {
 				type: 0,
 				amount: 1000,
-				recipientId: 'ONZkM9RAtLm8CvBQSjYbzxc7VqvsUwz1vyAk',
+				recipientId: 'ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX',
 				timestamp: 141738,
 				asset: {},
 				senderPublicKey: 'b390a3935f0bbc71a4bf601188efedd2dbf74dcd58c52e1bf420f186a7ce9601',
@@ -128,7 +128,7 @@ describe('crypto.js', function () {
 			};
 
 			var id = getId(transaction);
-			(id).should.be.type('string').and.equal('24af3cd399ed00aac5fae54902e61e8d4f286441ad762979d065e4512b84b977');
+			(id).should.be.type('string').and.equal('e9e8cec0197e44192d30fd715c28e59145d2d0b28e7a5c4466ce492007790222');
 		});
 	});
 

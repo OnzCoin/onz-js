@@ -53,7 +53,7 @@ describe('ParseOfflineRequests', function () {
 
 			(checkRequestRouting.requestMethod).should.be.equal('POST');
 			(checkRequestRouting.checkOfflineRequestBefore().requestMethod).should.be.equal('GET');
-			(checkRequestRouting.checkOfflineRequestBefore().requestUrl).should.be.equal('accounts?address=12475940823804898745Z');
+			(checkRequestRouting.checkOfflineRequestBefore().requestUrl).should.be.equal('accounts?address=ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX');
 		});
 
 		it('should route accounts/generatePublicKey requests correctly', function () {
@@ -61,7 +61,7 @@ describe('ParseOfflineRequests', function () {
 
 			(checkRequestRouting.requestMethod).should.be.equal('POST');
 			(checkRequestRouting.checkOfflineRequestBefore().requestMethod).should.be.equal('GET');
-			(checkRequestRouting.checkOfflineRequestBefore().requestUrl).should.be.equal('accounts?address=12475940823804898745Z');
+			(checkRequestRouting.checkOfflineRequestBefore().requestUrl).should.be.equal('accounts?address=ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX');
 		});
 
 		it('should route accounts/delegates requests correctly', function () {
@@ -74,7 +74,7 @@ describe('ParseOfflineRequests', function () {
 		});
 
 		it('should route transactions requests correctly', function () {
-			var checkRequestRouting = ONZ.parseOfflineRequests('transactions', { secret: '123', recipientId: '13356260975429434553L', amount: 10000000 });
+			var checkRequestRouting = ONZ.parseOfflineRequests('transactions', { secret: '123', recipientId: 'ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX', amount: 10000000 });
 
 			(checkRequestRouting.requestMethod).should.be.equal('PUT');
 			(checkRequestRouting.checkOfflineRequestBefore().requestMethod).should.be.equal('POST');
@@ -100,26 +100,6 @@ describe('ParseOfflineRequests', function () {
 			(checkRequestRouting.checkOfflineRequestBefore().params).should.be.ok();
 		});
 
-		it.skip('should route dapps requests correctly', function () {
-			var options = {
-				category: '0',
-				name: 'Onz Guestbook',
-				description: 'The official Onz guestbook',
-				tags: 'blockchain guestbook',
-				type: '0',
-				link: 'https://github.com/MaxKK/guestbookDapp/archive/master.zip',
-				icon: 'https://raw.githubusercontent.com/MaxKK/guestbookDapp/master/icon.png',
-				secret: '123'
-			};
-
-			var checkRequestRouting = onz.api().parseOfflineRequests('dapps', options);
-
-			(checkRequestRouting.requestMethod).should.be.equal('PUT');
-			// (checkRequestRouting.checkOfflineRequestBefore().requestMethod).should.be.equal('POST');
-			// (checkRequestRouting.checkOfflineRequestBefore().requestUrl).should.be.equal('transactions');
-			(checkRequestRouting.checkOfflineRequestBefore().params).should.be.ok();
-		});
-
 		it('should route multisignature requests correctly', function () {
 			var checkRequestRouting = ONZ.parseOfflineRequests('multisignatures', { secret: '123', secondSeret: '123', min: 2, lifetime: 5, keysgroup: ['+123', '+234'] });
 
@@ -130,7 +110,7 @@ describe('ParseOfflineRequests', function () {
 		});
 
 		it('should route multisignatures/sign requests correctly', function () {
-			var transaction = {'type':4,'amount':0,'fee':2000000000,'senderPublicKey':'a056010eed1ad3233d7872a5e158d90a777a6d894a3c0ec7ff1a2ddfd393f530','timestamp':27805422,'asset':{'multisignature':{'min':2,'lifetime':24,'keysgroup':['+9cc69eb423abc2531394ce133a0e9111f6a1a65f68b805615db22f2f1273fe84','+9ff43f4be47c55c671b64bf39cb182066da5ac08bdf0cab1aaa5f1edd34d096a','+c18718d3bcec893e88ed15b05a046a9f490d228e886f97c6f1f52c18f6bbf501']}},'signature':'70fd23a1f1ab87b21f62a2ffce87d34d7d141c18ab7177bdc8a4cb72314cad19354e38800aebc954bcf50d5afaec5e758994956c2fb6dd274c2a1e4340d8fc05','id':'1213555903609601305','senderId':'8437095464619135969L','relays':1,'receivedAt':'2017-04-11T12:43:42.207Z'};
+			var transaction = {'type':4,'amount':0,'fee':2000000000,'senderPublicKey':'b390a3935f0bbc71a4bf601188efedd2dbf74dcd58c52e1bf420f186a7ce9601','timestamp':27805422,'asset':{'multisignature':{'min':2,'lifetime':24,'keysgroup':['+9cc69eb423abc2531394ce133a0e9111f6a1a65f68b805615db22f2f1273fe84','+9ff43f4be47c55c671b64bf39cb182066da5ac08bdf0cab1aaa5f1edd34d096a','+c18718d3bcec893e88ed15b05a046a9f490d228e886f97c6f1f52c18f6bbf501']}},'signature':'70fd23a1f1ab87b21f62a2ffce87d34d7d141c18ab7177bdc8a4cb72314cad19354e38800aebc954bcf50d5afaec5e758994956c2fb6dd274c2a1e4340d8fc05','id':'1213555903609601305','senderId':'8437095464619135969L','relays':1,'receivedAt':'2017-04-11T12:43:42.207Z'};
 
 			var checkRequestRouting = ONZ.parseOfflineRequests('multisignatures/sign', { transaction: transaction, secret: '1234' });
 
@@ -149,7 +129,7 @@ describe('ParseOfflineRequests', function () {
 			var transformAnswer = {
 				success: 'true',
 				'account': {
-					'address': '1257758361663932343Z',
+					'address': 'ONZkc5XVxfYfQ4oiLWcmuuXqLWWmxWUBMYQS',
 					'unconfirmedBalance': '0',
 					'balance': '0',
 					'publicKey': 'aa73601080c9896502d999c931ff70346ca41957976cfce933f6d874a6f16137',
