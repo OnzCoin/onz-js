@@ -61,7 +61,7 @@ describe('Onz.api()', function () {
 				'os': 'onz-js-api',
 				'version': '1.0.0',
 				'minVersion': '>=0.5.3',
-				'port': 11000
+				'port': 443
 			};
 			(ONZ.getNethash()).should.eql(NetHash);
 		});
@@ -687,7 +687,7 @@ describe('Onz.api()', function () {
 					timestamp: 30676572,
 					senderPublicKey: '2cb967f6c73d9b6b8604d7b199271fed3183ff18ae0bd9cde6d6ef6072f83c05',
 					senderId: 'ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX',
-					recipientId: '13389153080173401705Z',
+					recipientId: 'ONZgKZmD713cLPfZK9YCTi9RRCxN7mygo7Eo',
 					recipientPublicKey: 'a81d59b68ba8942d60c74d10bc6488adec2ae1fa9b564a22447289076fe7b1e4',
 					amount: 146537207,
 					fee: 10000000,
@@ -733,8 +733,8 @@ describe('Onz.api()', function () {
 					type: 0,
 					timestamp: 25654653,
 					senderPublicKey: '632763673e5b3a0b704cd723d8c5bdf0be47e08210fe56a0c530f27ced6c228e',
-					senderId: '1891806528760779417L',
-					recipientId: '1813095620424213569L',
+					senderId: 'ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX',
+					recipientId: 'ONZgKZmD713cLPfZK9YCTi9RRCxN7mygo7Eo',
 					recipientPublicKey: 'e01b6b8a9b808ec3f67a638a2d3fa0fe1a9439b91dbdde92e2839c3327bd4589',
 					amount: 56340416586,
 					fee: 10000000,
@@ -879,9 +879,9 @@ describe('Onz.api()', function () {
 			};
 			var callback = sinon.spy();
 			var ONZnode = onz.api(options);
-			var secret = 'soap arm custom rhythm october dove chunk force own dial two odor';
-			var secondSecret = 'spider must salmon someone toe chase aware denial same chief else human';
-			var recipient = '10279923186189318946L';
+			var secret = 'fiscal pretty rice hero away farm uncover melt waste skill myself empower';
+			var secondSecret = 'elephant fun snap priority sentence minute bless parade gown child marine helmet';
+			var recipient = 'ONZgKZmD713cLPfZK9YCTi9RRCxN7mygo7Eo';
 			var amount = 100000000;
 			sinon.stub(ONZnode, 'sendRequest').callsArgWith(2, expectedResponse);
 
@@ -901,8 +901,8 @@ describe('Onz.api()', function () {
 	});
 
 	describe('#checkReDial', function () {
-		var secret = 'soap arm custom rhythm october dove chunk force own dial two odor';
-		var recipient = '10279923186189318946L';
+		var secret = 'fiscal pretty rice hero away farm uncover melt waste skill myself empower';
+		var recipient = 'ONZfmjwQykx1qwrg1SKwdHy13SZNit5suPLK';
 		var amount = 100000000;
 
 		it('should check if all the peers are already banned', function () {
@@ -1124,7 +1124,7 @@ describe('Onz.api()', function () {
 
 		describe('when a timeout occurs', function () {
 			it('should just call the api request once', function (done) {
-				thisONZ.sendONZ('1234L', '100', '1234', null, function () {
+				thisONZ.sendONZ('ONZgKZmD713cLPfZK9YCTi9RRCxN7mygo7Eo', '100', '1234', null, function () {
 					popsicleStub.callCount.should.be.equal(1);
 					done();
 				});

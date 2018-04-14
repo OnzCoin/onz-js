@@ -272,7 +272,7 @@ describe('crypto.js', function () {
 
 			(address).should.be.ok;
 			(address).should.be.type('string');
-			(address).should.be.equal('ONZgRgNF3Q3GUBVinNSX4UY9ud5t8gws2XPQ');
+			(address).should.be.equal('ONZkEmUBDRYnRqYEPuwoyeDjYhkMvzEiS6VD');
 		});
 	});
 
