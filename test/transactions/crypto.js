@@ -38,7 +38,7 @@ describe('crypto.js', function () {
 		it('should return Buffer of simply transaction and buffer most be 132 length for ONZ', function () {
 			var transaction = {
 				type: 0,
-				amount: 10000000,
+				amount: 1000,
 				recipientId: 'ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX',
 				timestamp: 224985,
 				asset: {},
@@ -56,7 +56,7 @@ describe('crypto.js', function () {
 		it('should return Buffer of transaction with second signature and buffer most be 181 length', function () {
 			var transaction = {
 				type: 0,
-				amount: 10000000,
+				amount: 1000,
 				recipientId: 'ONZkRUyubpNDc4g4GUza49EMjAZzRjv4vPKX',
 				timestamp: 224985,
 				asset: {},
@@ -267,7 +267,7 @@ describe('crypto.js', function () {
 		});
 
 		it('should generate address by publicKey', function () {
-			var keys = crypto.getKeys('position hunt belt avoid infant slot holiday captain inside lounge car fox');
+			var keys = crypto.getKeys('secret');
 			var address = getAddress(keys.publicKey);
 
 			(address).should.be.ok;

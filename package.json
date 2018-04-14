@@ -1,6 +1,6 @@
 {
   "name": "onz-js",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "JavaScript library for sending Onz transactions from the client or server",
   "main": "index.js",
   "scripts": {

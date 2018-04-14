@@ -7,7 +7,14 @@ if (typeof module !== 'undefined' && module.exports) {
 
 describe('Onz.api()', function () {
 
-	var ONZ = onz.api();
+        var ONZ;
+
+	beforeEach(() => {
+		var options = {
+			ssl: true,
+		};
+		ONZ = onz.api(options);
+	});
 
 	describe('onz.api()', function () {
 
@@ -894,16 +901,12 @@ describe('Onz.api()', function () {
 	});
 
 	describe('#checkReDial', function () {
+		var secret = 'soap arm custom rhythm october dove chunk force own dial two odor';
+		var recipient = '10279923186189318946L';
+		var amount = 100000000;
 
 		it('should check if all the peers are already banned', function () {
-			(onz.api().checkReDial()).should.be.equal(true);
-		});
-
-		it('should be able to get a new node when current one is not reachable', function (done) {
-			onz.api({ node: '123', randomPeer: true }).sendRequest('blocks/getHeight', {}, function (result) {
-				(result).should.be.type('object');
-				done();
-			});
+			(ONZ.checkReDial()).should.be.equal(true);
 		});
 
 		it('should recognize that now all the peers are banned for mainnet', function () {
@@ -921,28 +924,57 @@ describe('Onz.api()', function () {
 		});
 
 		it('should recognize that now all the peers are banned for ssl', function () {
-			var thisONZ = onz.api({ssl: true});
+			var thisONZ = onz.api({ ssl: true });
 			thisONZ.bannedPeers = onz.api().defaultSSLPeers;
 
 			(thisONZ.checkReDial()).should.be.equal(false);
 		});
 
 		it('should stop redial when all the peers are banned already', function (done) {
-			var thisONZ = onz.api();
-			thisONZ.bannedPeers = onz.api().defaultPeers;
-			thisONZ.currentPeer = '';
+			ONZ.bannedPeers = ONZ.defaultPeers;
+			ONZ.currentPeer = '';
 
-			thisONZ.sendRequest('blocks/getHeight').then(function (e) {
-				(e.message).should.be.equal('could not create http request to any of the given peers');
+			ONZ.sendRequest('blocks/getHeight').then(function (e) {
+				(e.message).should.be.equal('Could not create HTTP request to any of the given peers.');
 				done();
 			});
 		});
 
-		it('should redial to new node when randomPeer is set true', function () {
-			var thisONZ = onz.api({ randomPeer: true, node: '123' });
+		it('should stop redial when using a PUT request', function (done) {
+			var thisONZ = onz.api();
+			thisONZ.currentPeer = '';
 
-			(thisONZ.checkReDial()).should.be.equal(true);
-			(thisONZ.testnet).should.be.equal(false);
+			thisONZ.sendONZ(recipient, amount, secret, null, function (e) {
+				(e.message).should.be.equal('Could not create HTTP request. Please try again.');
+				done();
+			});
+		});
+
+		it('should stop redial when using a POST request', function (done) {
+			var thisONZ = onz.api();
+			thisONZ.currentPeer = '';
+			const options = {
+				'secret': secret,
+				'secendSecret': null,
+				'lifetime': 5,
+				'min': 5,
+				'keysgroup': ['1234', '123456']
+			};
+
+			thisONZ.sendRequest('multisignatures', options, function (e) {
+				(e.message).should.be.equal('Could not create HTTP request. Please try again.');
+				done();
+			});
+		});
+
+		it('should call checkReDial when randomPeer is set true', function (done) {
+			var thisONZ = onz.api({ randomPeer: true, node: '123' });
+			var checkReDialStub = sinon.stub(thisONZ, 'checkReDial').returns(false);
+
+			thisONZ.getAccount('12731041415715717263L', function () {
+				(checkReDialStub.calledOnce).should.be.equal(true);
+				done();
+
 		});
 
 		it('should not redial to new node when randomPeer is set to true but unknown nethash provided', function () {
@@ -1079,6 +1111,23 @@ describe('Onz.api()', function () {
 				(result).should.be.ok;
 				(result).should.be.type('object');
 				done();
+			});
+		});
+	});
+});
+	describe('integration test retry routing', function () {
+		var thisONZ = onz.api();
+		var popsicleStub;
+		beforeEach(function () {
+			popsicleStub = sinon.stub(thisONZ, 'doPopsicleRequest').rejects({ sorry: 'request probably timed out' });
+		});
+
+		describe('when a timeout occurs', function () {
+			it('should just call the api request once', function (done) {
+				thisONZ.sendONZ('1234L', '100', '1234', null, function () {
+					popsicleStub.callCount.should.be.equal(1);
+					done();
+				});
 			});
 		});
 	});

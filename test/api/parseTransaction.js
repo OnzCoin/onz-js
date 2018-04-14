@@ -100,6 +100,26 @@ describe('ParseOfflineRequests', function () {
 			(checkRequestRouting.checkOfflineRequestBefore().params).should.be.ok();
 		});
 
+		it.skip('should route dapps requests correctly', function () {
+			var options = {
+				category: '0',
+				name: 'Onz Guestbook',
+				description: 'The official Onz guestbook',
+				tags: 'blockchain guestbook',
+				type: '0',
+				link: 'https://github.com/MaxKK/guestbookDapp/archive/master.zip',
+				icon: 'https://raw.githubusercontent.com/MaxKK/guestbookDapp/master/icon.png',
+				secret: '123'
+			};
+
+			var checkRequestRouting = onz.api().parseOfflineRequests('dapps', options);
+
+			(checkRequestRouting.requestMethod).should.be.equal('PUT');
+			// (checkRequestRouting.checkOfflineRequestBefore().requestMethod).should.be.equal('POST');
+			// (checkRequestRouting.checkOfflineRequestBefore().requestUrl).should.be.equal('transactions');
+			(checkRequestRouting.checkOfflineRequestBefore().params).should.be.ok();
+		});
+
 		it('should route multisignature requests correctly', function () {
 			var checkRequestRouting = ONZ.parseOfflineRequests('multisignatures', { secret: '123', secondSeret: '123', min: 2, lifetime: 5, keysgroup: ['+123', '+234'] });
 
